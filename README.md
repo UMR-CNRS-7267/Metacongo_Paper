@@ -9,6 +9,10 @@ This repository contains descriptions of the tools and methods used to analyze m
 To reproduce these analyses we need the following tools installed in your local machine (Linux)
 (For our side we used : CentOS Linux release 7.5.1804 (Core) Maipo) 
 
+**FastQC** available at : https://github.com/s-andrews/FastQC (Version used 0.11.8)
+
+**fastp**  available at : https://github.com/OpenGene/fastp    (Version used 0.21.0)
+
 
 
 # Getting the raw data 
