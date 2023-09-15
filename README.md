@@ -4,6 +4,13 @@
 This repository contains descriptions of the tools and methods used to analyze metagenomic data from surface water sampled from the city of Pointe-Noire, Congo. The paper is published in XXX and  available here: http:blabla.com
 
 
+
+# Prerequisites
+To reproduce these analyses we need the following tools installed in your local machine (Linux)
+(For our side we used : CentOS Linux release 7.5.1804 (Core) Maipo) 
+
+
+
 # Getting the raw data 
 
 * The technology used is Illumina, in paired end mode.
