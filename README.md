@@ -16,16 +16,19 @@ To reproduce these analyses we need the following tools installed in your local 
 
 **fastp**  available at : https://github.com/OpenGene/fastp    (Version used 0.21.0)
 
-**Bowtie 2**
-**Kaiju**
+**Bowtie 2** available at :
 
-**Kraken 2**
+**Kaiju** available at :
 
-**KronaTools**
+**Kraken 2** available at :
 
-**Megahit**
+**KronaTools** available at :
 
-**metaSPAdes**
+**Megahit** available at :
+
+**metaSPAdes** available at :
+
+>some modules from metawrap Pipleine (but you have to install the whole pipeline if you want to use this ....)
 
 
 
