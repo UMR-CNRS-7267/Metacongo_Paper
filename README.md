@@ -11,14 +11,21 @@ This repository contains descriptions of the tools and methods used to analyze m
 *  Feel free to use your favorite tools to get these files in local.
 * If you want to reproduce these analysis, please renames these files according to this manual:
 
-# Renaming data file (Optional)
+# Renaming data files (Optional)
 
 
 ```bash
 # make a directory to store the raw data 
 $ mkdir RAW_DATA
-$ mv XXXX_R1.fastq.gz 
-$ mv XXXX_R2.fastq.gz 
+$ mv XXXX_R1.fastq.gz EPNC_R1.fq.gz
+$ mv XXXX_R2.fastq.gz EPNC_R2.fq.gz
+
+# Get Reads count (Optional) from the fastq files
+$ for i in *gz; do  printf $i"\t"; gzip -cd $i | grep -c "@GWNJ-"; done
+EPNC_R1.fq.gz  84886827
+EPNC_R2.fq.gz  84886827
+
+
 ``` 
 
 
