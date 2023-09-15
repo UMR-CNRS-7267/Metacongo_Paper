@@ -12,24 +12,25 @@ To reproduce these analyses we need the following tools installed in your local 
 ## Tools and scripts
 **bash** available by deafult in all linux distritions (version 4.2.46(2)-release )
 
-**FastQC** available at : https://github.com/s-andrews/FastQC (Version used 0.11.8)
+**FastQC** available at https://github.com/s-andrews/FastQC (Version used 0.11.8)
 
-**fastp**  available at : https://github.com/OpenGene/fastp    (Version used 0.21.0)
+**fastp**  available at https://github.com/OpenGene/fastp    (Version used 0.21.0)
 
-**Bowtie 2** available at :
+**Bowtie 2** available at https://github.com/BenLangmead/bowtie2 (Version used  XXXX)
 
-**Kaiju** available at :
+**Kaiju** available at https://github.com/bioinformatics-centre/kaiju (Version used  XXXX)
 
-**Kraken 2** available at :
+**Kraken 2** available at https://github.com/DerrickWood/kraken2 (Version used  XXXX)
 
-**KronaTools** available at :
+**KronaTools** available at https://github.com/marbl/Krona (Version used  XXXX)
 
-**Megahit** available at :
+**Megahit** available at  https://github.com/voutcn/megahit (Version used  XXXX)
 
-**metaSPAdes** available at :
+**metaSPAdes** available at https://github.com/ablab/spades (Version used  XXXX)
 
->some modules from metawrap Pipleine (but you have to install the whole pipeline if you want to use this ....)
+>some modules from MetaWRAP  Pipleine (but you have to install the whole pipeline if you want to use this ....)
 
+**MetaWRAP** availbale  at https://github.com/bxlab/metaWRAP  (Version used  XXXX)
 
 
 
