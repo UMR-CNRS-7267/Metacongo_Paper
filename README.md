@@ -65,7 +65,6 @@ $ pwd
 /home/user_name/RAW_DATA
 
 # Call fastqc program on your fastq files
-
 # In standard Linux (Pc or simple server)
 $ fastqc *gz -t X # when X is the number of threads you want to use 
 
