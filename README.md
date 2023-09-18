@@ -58,7 +58,22 @@ $ for i in *gz; do  printf $i"\t"; gzip -cd $i | grep -c "@GWNJ-"; done
 EPNC_R1.fq.gz  84886827
 EPNC_R2.fq.gz  84886827
 
-
 ``` 
+# Raw data QC (Using fastqc)
+ ```bash
+$ pwd
+/home/user_name/RAW_DATA
+
+# Call fastqc program on your fastq files
+
+# In standard Linux (Pc or simple server)
+$ fastqc *gz -t X # when X is the number of threads you want to use 
+
+# If you have a cluster with slurm (see Scripts folder for a script named fastqc_slurm.sh)
+
+```
+
+
+
 
 
