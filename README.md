@@ -45,6 +45,8 @@ To reproduce these analyses we need the following tools installed in your local 
 # Renaming data files (Optional)
 
 
+> If you choose to keep the original filenames, as downloaded from ncbi, feel free to track that change over the whole pipeline
+
 ```bash
 # make a directory to store the raw data 
 $ mkdir RAW_DATA
