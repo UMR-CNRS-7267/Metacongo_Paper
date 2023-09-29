@@ -12,6 +12,7 @@ To reproduce these analyses we need the following tools installed in your local 
 
 # Tools and scripts
 
+
 **bash** available by deafult in all linux distritions (version 4.2.46(2)-release )
 
 **FastQC** available at https://github.com/s-andrews/FastQC (Version used 0.11.8)
