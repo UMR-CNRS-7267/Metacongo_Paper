@@ -10,7 +10,7 @@ This repository contains descriptions of the tools and methods used to analyze m
 To reproduce these analyses we need the following tools installed in your local machine (Linux)
 (For our side we used : CentOS Linux release 7.5.1804 (Core) Maipo) 
 
-## Tools and scripts
+# Tools and scripts
 **bash** available by deafult in all linux distritions (version 4.2.46(2)-release )
 
 **FastQC** available at https://github.com/s-andrews/FastQC (Version used 0.11.8)
@@ -203,7 +203,7 @@ lrwxrwxrwx 1 foo users  40 Nov 21 10:58 EPNC_trim_R2.fq.gz -> ../5.QC_FILTERED_D
 
 # Get data for input (Note orphan reads from R1 and R2 are merged with simple cat command)
 $ pwd 
-/home//foo/Metacongo_Paper/HUMAN_CONTA_REMOVAL
+/home/foo/Metacongo_Paper/HUMAN_CONTA_REMOVAL
 
 # Symlink files as usual  (using ln -s)
 $ for i in ../QC_FILTERED_DATA/*gz; do ln -s $i ; done
@@ -214,6 +214,47 @@ lrwxrwxrwx 1 foo users         41 Nov 21  2022 EPNC_orphan_2.fq.gz -> ../5.QC_FI
 -rw-r--r-- 1 foo users  468447598 Nov 21  2022 EPNC_orphan.fq.gz #This file is from cat EPNC_orphan_1.fq.gz EPNC_orphan_2.fq.gz> EPNC_orphan.fq.gz 
 lrwxrwxrwx 1 foo users         40 Nov 21  2022 EPNC_trim_R1.fq.gz -> ../QC_FILTERED_DATA/EPNC_trim_R1.fq.gz
 lrwxrwxrwx 1 foo users         40 Nov 21  2022 EPNC_trim_R2.fq.gz -> ../QC_FILTERED_DATA/EPNC_trim_R2.fq.gz
+
+
+# Run bowtie2 to map reads to human genome index
+
+$ bowtie2 --very-sensitive-local -x $HUMAN_BW2_INDEX -1 $F_READS  -2 $R_READS -U $ORPHAN_READS -S $OUT_SAM -p $SLURM_CPUS_PER_TASK
+
+# Converting sam to bam 
+
+$ samtools view -S -bh $OUT_SAM > $OUT_BAM
+
+# Sort bam file
+
+$ samtools sort $OUT_BAM -o $OUT_BAM_SORTED
+
+# Getting some stats from the whole BAM file  (Optional)
+
+$ bamtools stats -in $OUT_BAM_SORTED >mapping_stat_from_whole_bam.stats
+
+# Getting unmapped reads from the bam file ....
+
+$ samtools view -b -f 4 $OUT_BAM_SORTED > $OUT_UNMAPPED_BAM
+
+# This line produce the unmapped list BUT with duplication
+# Have to remove duplicated reads at the end using seqkit
+
+$ samtools view $OUT_UNMAPPED_BAM  |awk '{print $1}' >$UNMAPPED_LIST
+
+# Using seqtk to get unmapped reads in fastq format ...
+
+$ seqtk subseq $F_READS  $UNMAPPED_LIST  | gzip > EPNC_trim_no_human_R1.fq.gz
+$ seqtk subseq $R_READS  $UNMAPPED_LIST  | gzip > EPNC_trim_no_human_R2.fq.gz
+$ seqtk subseq $ORPHAN_READS   $UNMAPPED_LIST | gzip   > EPNC_orphan_no_human.fq.gz
+
+# Rename files (Optional)
+$ mv EPNC_trim_no_human_R1.fq.gz  EPNC_trim_ready_R1.fq.gz
+$ mv EPNC_trim_no_human_R2.fq.gz  EPNC_trim_ready_R2.fq.gz
+$ mv EPNC_orphan_no_human.fq.gz   EPNC_orphan_ready.fq.gz
+
+# Puts these files in another folder
+$ mkdir READY_FASTQ_FILES
+mv EPNC_trim_ready_R1.fq.gz EPNC_trim_ready_R2.fq.gz EPNC_orphan_ready.fq.gz 6.2.READY_FASTQ_FILES
 
 
 
