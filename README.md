@@ -168,8 +168,24 @@ $ fastqc *gz -t X # when X is the number of threads you want to use
 # If you have a cluster with slurm (see Scripts folder for a script named fastqc_filtered_data_slurm.sh) and sbatch fastqc_filtered_data_slurm.sh to run it
 
 ```
+# Human sequences/reads removal (in silico decontamination)
+
+```bash
+# Folers/subfolders
+$ mkdir HUMAN_CONTA_REMOVAL && cd HUMAN_CONTA_REMOVAL
+$ mkdir REF && cd REF
+
+#Bowtie  index was downnloaded from here
+https://genome-idx.s3.amazonaws.com/bt/GRCh38_noalt_as.zip
+
+$ wget https://genome-idx.s3.amazonaws.com/bt/GRCh38_noalt_as.zip
+#Extact and delete unwatned folders, files
+$ unzip GRCh38_noalt_as.zip
+$ mv GRCh38_noalt_as/GRCh38_noalt_as.* .
+$ rm -rf GRCh38_noalt_as GRCh38_noalt_as.zip
 
 
+```
 
 
 
