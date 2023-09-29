@@ -46,17 +46,18 @@ To reproduce these analyses we need the following tools installed in your local 
 
 # Databases 
 
-**kaiju databases**
+**kaiju databases** 
 
-kaiju_db_nr_euk_2022-03-10 available at 
+(Feel free to use recent databases if you want), Newer versions are available from kaiju webserver https://kaiju.binf.ku.dk/server
 
-kaiju_db_plasmids_2022-04-10 available at 
+kaiju_db_nr_euk_2022-03-10 (71GB) available at https://kaiju-idx.s3.eu-central-1.amazonaws.com/2022/kaiju_db_nr_euk_2022-03-10.tgz
 
-kaiju_db_rvdb_2022-04-07  available at 
+kaiju_db_plasmids_2022-04-10 (966MB) available at https://kaiju-idx.s3.eu-central-1.amazonaws.com/2022/kaiju_db_plasmids_2022-04-10.tgz
 
->> NB: for Kaiju databses we need 3 files for each db
+kaiju_db_rvdb_2022-04-07 (983MB)  available at  https://kaiju-idx.s3.eu-central-1.amazonaws.com/2022/kaiju_db_rvdb_2022-04-07.tgz
 
-database.fmi, nodes.dmp and names.dmp
+
+>> NB: for Kaiju databses we need 3 files for each db: database.fmi, nodes.dmp and names.dmp
 
 
 **kraken2 databases**
