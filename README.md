@@ -150,6 +150,25 @@ EPNC_trim_R2.fq.gz      3
 
 ```
 
+QC the data again (Optional since fastp has report with before after)
+
+```bash
+$ mkdir QC_FILTERED_DATA && cd QC_FILTERED_DATA
+#Symlink filtered data as usual (using ln -s)
+$ ll
+lrwxrwxrwx 1 foo users     40 Jan 22  2021 EPNC_orphan_1.fq.gz -> ../4.FASTP_FILTERING/EPNC_orphan_1.fq.gz
+lrwxrwxrwx 1 foo users     40 Jan 22  2021 EPNC_orphan_2.fq.gz -> ../4.FASTP_FILTERING/EPNC_orphan_2.fq.gz
+lrwxrwxrwx 1 foo users     39 Jan 22  2021 EPNC_trim_R1.fq.gz -> ../4.FASTP_FILTERING/EPNC_trim_R1.fq.gz
+lrwxrwxrwx 1 foo users     39 Jan 22  2021 EPNC_trim_R2.fq.gz -> ../4.FASTP_FILTERING/EPNC_trim_R2.fq.gz
+
+#fastqc on these files
+$ fastqc *gz -t X # when X is the number of threads you want to use 
+
+# If you have a cluster with slurm (see Scripts folder for a script named fastqc_filtered_data_slurm.sh)
+
+```
+
+
 
 
 
