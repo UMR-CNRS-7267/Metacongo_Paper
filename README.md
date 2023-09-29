@@ -215,6 +215,20 @@ lrwxrwxrwx 1 foo users         41 Nov 21  2022 EPNC_orphan_2.fq.gz -> ../5.QC_FI
 lrwxrwxrwx 1 foo users         40 Nov 21  2022 EPNC_trim_R1.fq.gz -> ../QC_FILTERED_DATA/EPNC_trim_R1.fq.gz
 lrwxrwxrwx 1 foo users         40 Nov 21  2022 EPNC_trim_R2.fq.gz -> ../QC_FILTERED_DATA/EPNC_trim_R2.fq.gz
 
+# TO FACILITATE THIS STEP WE HAVE TO EXPORT SOME VAR DIRECTLY FROM CMD (IN BASH)
+$ F_READS='EPNC_trim_R1.fq.gz'
+$ R_READS='EPNC_trim_R2.fq.gz'
+$ ORPHAN_READS='EPNC_orphan.fq.gz'
+$ HUMAN_BW2_INDEX='REF/GRCh38_noalt_as'
+
+$ OUT_SAM='Read_vs_human.sam'
+$ OUT_BAM='Read_vs_human.bam'
+$ OUT_UNMAPPED_BAM='Unmapped.bam'
+
+$ OUT_BAM_SORTED='Unmapped_sorted.bam'
+$ UNMAPPED_LIST='Unmapped.list'
+
+
 
 # Run bowtie2 to map reads to human genome index
 
