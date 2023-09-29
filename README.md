@@ -277,9 +277,14 @@ mv EPNC_trim_ready_R1.fq.gz EPNC_trim_ready_R2.fq.gz EPNC_orphan_ready.fq.gz 6.2
 
 
 >> At this step data are ready to analyse, we will profile the metagenomic  read using two profiler (Kaiju and Kraken2).
->> kaiju use amino acid database, so there is six-frames translation of our reads then compare to pro
+
+>> kaiju use amino acid database, so there is six-frames translation of our reads then compare to proteins DB
+
 >> kraken2 use  nucleotide database. 
+
 >> All reads those are not assigned/classified by kaiju were passed to kraken2
+
+<span style="color:blue"> This step  needs databases so be sur to have enough place in your local server</span>.
 
 
 
