@@ -29,6 +29,10 @@ To reproduce these analyses we need the following tools installed in your local 
 
 **seqkit** available at https://github.com/shenwei356/seqkit/ (Version XXX)
 
+**Samtools** available at https://github.com/samtools/samtools (Version used v1.9)
+
+**bamtools** available at https://github.com/pezmaster31/bamtools (Version used 2.5.1)
+
 **Megahit** available at  https://github.com/voutcn/megahit (Version used  XXXX)
 
 **metaSPAdes** available at https://github.com/ablab/spades (Version used  XXXX)
@@ -197,7 +201,35 @@ lrwxrwxrwx 1 foo users  41 Nov 21 10:58 EPNC_orphan_2.fq.gz -> ../5.QC_FILTERED_
 lrwxrwxrwx 1 foo users  40 Nov 21 10:58 EPNC_trim_R1.fq.gz -> ../5.QC_FILTERED_DATA/EPNC_trim_R1.fq.gz
 lrwxrwxrwx 1 foo users  40 Nov 21 10:58 EPNC_trim_R2.fq.gz -> ../5.QC_FILTERED_DATA/EPNC_trim_R2.fq.gz
 
+# Get data for input (Note orphan reads from R1 and R2 are merged with simple cat command)
+$ pwd 
+/home//foo/Metacongo_Paper/HUMAN_CONTA_REMOVAL
 
+# Symlink files as usual  (using ln -s)
+(base) [bmoumen@volcano 6.HUMAN_CONTA_REMOVAL]$ ll
+drwxr-xr-x 2 foo users        216 Nov 21  2022 6.1.REF
+lrwxrwxrwx 1 foo users         41 Nov 21  2022 EPNC_orphan_1.fq.gz -> ../5.QC_FILTERED_DATA/EPNC_orphan_1.fq.gz
+lrwxrwxrwx 1 foo users         41 Nov 21  2022 EPNC_orphan_2.fq.gz -> ../5.QC_FILTERED_DATA/EPNC_orphan_2.fq.gz
+-rw-r--r-- 1 foo users  468447598 Nov 21  2022 EPNC_orphan.fq.gz #This file is from cat EPNC_orphan_1.fq.gz EPNC_orphan_2.fq.gz> EPNC_orphan.fq.gz 
+lrwxrwxrwx 1 foo users         40 Nov 21  2022 EPNC_trim_R1.fq.gz -> ../QC_FILTERED_DATA/EPNC_trim_R1.fq.gz
+lrwxrwxrwx 1 foo users         40 Nov 21  2022 EPNC_trim_R2.fq.gz -> ../QC_FILTERED_DATA/EPNC_trim_R2.fq.gz
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+# If you have a cluster with slurm (see Scripts folder for a script named fastqc_filtered_data_slurm.sh) and sbatch bowtie2_vs_human_slurm.sh to run it
 ```
 
 
