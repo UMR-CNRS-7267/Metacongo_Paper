@@ -272,23 +272,14 @@ $ mv EPNC_orphan_no_human.fq.gz   EPNC_orphan_ready.fq.gz
 $ mkdir READY_FASTQ_FILES
 mv EPNC_trim_ready_R1.fq.gz EPNC_trim_ready_R2.fq.gz EPNC_orphan_ready.fq.gz 6.2.READY_FASTQ_FILES
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 # If you have a cluster with slurm (see Scripts folder for a script named fastqc_filtered_data_slurm.sh) and sbatch bowtie2_vs_human_slurm.sh to run it
 ```
+
+
+>> At this step data are ready to analyse, we will profile the metagenomic  read using two profiler (Kaiju and Kraken2).
+>> kaiju use amino acid database, so there is six-frames translation of our reads then compare to pro
+>> kraken2 use  nucleotide database. 
+>> All reads those are not assigned/classified by kaiju were passed to kraken2
 
 
 
