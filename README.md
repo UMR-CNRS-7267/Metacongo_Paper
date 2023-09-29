@@ -164,7 +164,7 @@ lrwxrwxrwx 1 foo users     39 Jan 22  2021 EPNC_trim_R2.fq.gz -> ../4.FASTP_FILT
 #fastqc on these files
 $ fastqc *gz -t X # when X is the number of threads you want to use 
 
-# If you have a cluster with slurm (see Scripts folder for a script named fastqc_filtered_data_slurm.sh)
+# If you have a cluster with slurm (see Scripts folder for a script named fastqc_filtered_data_slurm.sh) and sbatch fastqc_filtered_data_slurm.sh to run it
 
 ```
 
