@@ -10,7 +10,7 @@
 
 
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=bouziane.moumen@univ-poitiers.fr
+#SBATCH --mail-user=your_mail_here
 
 ##Get some Variables
 

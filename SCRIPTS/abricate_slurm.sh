@@ -12,7 +12,7 @@
 
 
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=bouziane.moumen@univ-poitiers.fr
+#SBATCH --mail-user=your_mail_here
 
 set -e
 set -x
@@ -20,8 +20,6 @@ set -x
 source /home/bioinf/apps/anaconda3/bin/activate
 conda activate abricate
 
-#module load bioinf
-#module load seqtk
 
 #Exit if error 
 

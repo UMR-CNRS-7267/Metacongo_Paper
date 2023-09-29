@@ -11,7 +11,7 @@
 #SBATCH --mem-per-cpu=380000MB
 
 #SBATCH --mail-type=ALL
-#SBATCH --mail-user=bouziane.moumen@univ-poitiers.fr
+#SBATCH --mail-user=your_mail_here
 
 #LOAD WANTED MODULES
 
