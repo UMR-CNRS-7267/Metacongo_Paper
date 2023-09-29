@@ -25,6 +25,10 @@ To reproduce these analyses we need the following tools installed in your local 
 
 **KronaTools** available at https://github.com/marbl/Krona (Version used  XXXX)
 
+**seqtk** available at https://github.com/lh3/seqtk (Vresion XXX)
+
+**seqkit** available at https://github.com/shenwei356/seqkit/ (Version XXX)
+
 **Megahit** available at  https://github.com/voutcn/megahit (Version used  XXXX)
 
 **metaSPAdes** available at https://github.com/ablab/spades (Version used  XXXX)
@@ -183,6 +187,15 @@ $ wget https://genome-idx.s3.amazonaws.com/bt/GRCh38_noalt_as.zip
 $ unzip GRCh38_noalt_as.zip
 $ mv GRCh38_noalt_as/GRCh38_noalt_as.* .
 $ rm -rf GRCh38_noalt_as GRCh38_noalt_as.zip
+$ cd ../
+#Symlink fastq files
+$ for i in ../QC_FILTERED_DATA/*gz; do ln -s $i ; done
+$ ll
+drwxr-xr-x 2 foo users 216 Nov 21 10:48 6.1.REF
+lrwxrwxrwx 1 foo users  41 Nov 21 10:58 EPNC_orphan_1.fq.gz -> ../5.QC_FILTERED_DATA/EPNC_orphan_1.fq.gz
+lrwxrwxrwx 1 foo users  41 Nov 21 10:58 EPNC_orphan_2.fq.gz -> ../5.QC_FILTERED_DATA/EPNC_orphan_2.fq.gz
+lrwxrwxrwx 1 foo users  40 Nov 21 10:58 EPNC_trim_R1.fq.gz -> ../5.QC_FILTERED_DATA/EPNC_trim_R1.fq.gz
+lrwxrwxrwx 1 foo users  40 Nov 21 10:58 EPNC_trim_R2.fq.gz -> ../5.QC_FILTERED_DATA/EPNC_trim_R2.fq.gz
 
 
 ```
