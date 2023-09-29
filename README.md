@@ -129,6 +129,27 @@ REMOVED READS >>> 169773654-164756559=5017095
 
 ```
 
+Optional but it is always good to see before/after (we will count the adaptors) in files before/after
+
+```bash
+$ for i in *gz; do printf $i"\t"; zcat $i |grep -c "AGATCGGAAGAGCACACGTCTGAACTCCAGTCA"; done
+EPNC_orphan_1.fq.gz     0
+EPNC_orphan_2.fq.gz     0
+EPNC_R1.fq.gz   157789 (original file)
+EPNC_R2.fq.gz   0
+EPNC_trim_R1.fq.gz      1
+EPNC_trim_R2.fq.gz      0
+
+$ for i in *gz; do printf $i"\t"; zcat $i |grep -c "AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT"; done
+EPNC_orphan_1.fq.gz     0
+EPNC_orphan_2.fq.gz     0
+EPNC_R1.fq.gz   0
+EPNC_R2.fq.gz   106984 (Original file)
+EPNC_trim_R1.fq.gz      0
+EPNC_trim_R2.fq.gz      3
+
+```
+
 
 
 
