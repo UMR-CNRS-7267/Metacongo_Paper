@@ -284,7 +284,7 @@ mv EPNC_trim_ready_R1.fq.gz EPNC_trim_ready_R2.fq.gz EPNC_orphan_ready.fq.gz 6.2
 
 >> All reads those are not assigned/classified by kaiju were passed to kraken2
 
-<span style="color:blue"> This step  needs databases so be sur to have enough place in your local server </span>.
+>> ***This step  needs databases so be sur to have enough place in your local server ...***
 
 
 
