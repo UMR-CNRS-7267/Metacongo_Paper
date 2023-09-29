@@ -44,6 +44,26 @@ To reproduce these analyses we need the following tools installed in your local 
 **MetaWRAP** availbale  at https://github.com/bxlab/metaWRAP  (Version used  XXXX)
 
 
+# Databases 
+
+**kaiju databases**
+
+kaiju_db_nr_euk_2022-03-10 available at 
+
+kaiju_db_plasmids_2022-04-10 available at 
+
+kaiju_db_rvdb_2022-04-07  available at 
+
+>> NB: for Kaiju databses we need 3 files for each db
+
+database.fmi, nodes.dmp and names.dmp
+
+
+**kraken2 databases**
+
+
+
+
 
 # Getting the raw data 
 
