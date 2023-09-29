@@ -206,7 +206,8 @@ $ pwd
 /home//foo/Metacongo_Paper/HUMAN_CONTA_REMOVAL
 
 # Symlink files as usual  (using ln -s)
-(base) [bmoumen@volcano 6.HUMAN_CONTA_REMOVAL]$ ll
+$ for i in ../QC_FILTERED_DATA/*gz; do ln -s $i ; done
+$ ll
 drwxr-xr-x 2 foo users        216 Nov 21  2022 6.1.REF
 lrwxrwxrwx 1 foo users         41 Nov 21  2022 EPNC_orphan_1.fq.gz -> ../5.QC_FILTERED_DATA/EPNC_orphan_1.fq.gz
 lrwxrwxrwx 1 foo users         41 Nov 21  2022 EPNC_orphan_2.fq.gz -> ../5.QC_FILTERED_DATA/EPNC_orphan_2.fq.gz
