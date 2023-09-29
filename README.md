@@ -309,6 +309,17 @@ mv EPNC_trim_ready_R1.fq.gz EPNC_trim_ready_R2.fq.gz EPNC_orphan_ready.fq.gz 6.2
 
 >> ***This step  needs databases so be sur to have enough place in your local server ...***
 
+# PROFILING 
+
+```bash
+$ mkdir PROFILING && cd PROFILING
+$ mkdir USING_KAIJU USING_KRAKEN2 && cd USING_KAIJU
+
+
+
+
+```
+
 
 
 
