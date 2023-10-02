@@ -810,6 +810,8 @@ metaspades.py --pe1-1 EPNC_trim_ready_clean_R1.fq.gz  --pe1-2 EPNC_trim_ready_cl
 
 ```bash
 
+$ mkdir WHOLE_ASSEMBLY && cd WHOLE_ASSEMBLY
+
 # Symlink assemblies (from megahit and metaspades ...)
 
 $ ln -s ../../ASSEMBLY/MEGAHIT_ASSEMBLY/metacongo_final_assembly/final.contigs.fa
@@ -839,6 +841,15 @@ clusterRes_rep_seq.fasta (This file will be used to scan for AMR)
 ## AMRs detection
 
 ```bash
+$ mkdir AMR_DETECT && cd AMR_DETECT
+$ ln -s ../WHOLE_ASSEMBLY/clusterRes_rep_seq.fasta
+
+# Run abricate
+abricate clusterRes_rep_seq.fasta  --threads 10  > Abricate_ouput.tab
+
+# Generate summary
+abricate --summary  Abricate_ouput.tab> Abricate_ouput_summary.tab
+
 
 
 ```
