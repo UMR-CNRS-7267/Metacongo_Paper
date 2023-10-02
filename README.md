@@ -816,21 +816,24 @@ bamtools stats -in metacongo_sorted.bam >mapping.stats
 # Start binning contigs using metabat2
 
 
-runMetaBat.sh -m 1500 -t 10   metacong_megahit_assembly.fsa  metacongo_sorted.bam 
+$ runMetaBat.sh -m 1500 -t 10   metacong_megahit_assembly.fsa  metacongo_sorted.bam 
 
 
 # Start binning using maxbin2 ...........
 
 
+$ run_MaxBin.pl -contig metacong_megahit_assembly.fsa  -out maxbin2_results -reads EPNC_trim_ready_clean_R1.fq.gz \
+              -reads2 EPNC_trim_ready_clean_R2.fq.gz  \
+              -reads3 EPNC_orphan_ready_clean.fq.gz \
+              -min_contig_length 200 -thread 10 \
+              -prob_threshold 0.7 -plotmarker -markerset 40 -verbose 
+
+$ mkdir Maxbin2_binning_results  && mv maxbin* Maxbin2_binning_results
+
 ```
 
 
-REF='metacong_megahit_assembly.fsa'
-INDEX=$REF"__indexed"
-R1='EPNC_trim_ready_clean_R1.fq.gz'
-R2='EPNC_trim_ready_clean_R2.fq.gz'
-ORPHAN='EPNC_orphan_ready_clean.fq.gz'
-MAPPING_MODE='--very-sensitive-local'
+
 
 
 
