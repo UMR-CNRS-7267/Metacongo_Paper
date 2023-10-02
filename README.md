@@ -686,7 +686,7 @@ $ kraken2 --use-names --threads 10 --db /home/databases/kraken2_bracken_ref_seq/
 
 $ kraken2  --db home/databases/kraken2_bracken_ref_seq/standard_plus_PF/ \
              orphan_to_kraken2.fq.gz  --use-names --report orphan_kraken.report \
-            --output orphan_kraken.output \
+            --output orphan_kraken2.output \
             --gzip-compressed --threads 10 \
             --classified_from_orphan.fq  unclassified_from_orphan.fq
 
@@ -696,6 +696,24 @@ gzip *fq
 
 ```
 
+> Now, using kreport2krona.py from krakentools (to be added in REF)
+
+```bash
+
+# Paired
+$ kreport2krona.py -r metacongo_remaining_kraken2.report --intermediate-ranks -o metacongo_remaining_kraken2.KRONA
+
+# Single/orphans
+
+$ kreport2krona.py -r orphan_kraken2.report --intermediate-ranks  -o orphan_kraken2.KRONA
+
+#Generate html for visualization (you can use the script available with kaiju package ktImportText from KronaTools ...)
+
+$ ktImportText -o metacongo_remaining_kraken2.KRONA.html  metacongo_remaining_kraken2.KRONA
+
+$ ktImportText -o orphan_kraken2.KRONA.html orphan_kraken2.KRONA
+
+```
 
 
 
