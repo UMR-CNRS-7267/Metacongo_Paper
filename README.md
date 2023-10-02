@@ -823,7 +823,8 @@ $ runMetaBat.sh -m 1500 -t 10   metacong_megahit_assembly.fsa  metacongo_sorted.
 # Start binning using maxbin2 ...........
 
 
-$ run_MaxBin.pl -contig metacong_megahit_assembly.fsa  -out maxbin2_results -reads EPNC_trim_ready_clean_R1.fq.gz \
+$ run_MaxBin.pl -contig metacong_megahit_assembly.fsa  -out maxbin2_results \
+              -reads EPNC_trim_ready_clean_R1.fq.gz \
               -reads2 EPNC_trim_ready_clean_R2.fq.gz  \
               -reads3 EPNC_orphan_ready_clean.fq.gz \
               -min_contig_length 200 -thread 10 \
