@@ -539,14 +539,14 @@ OUTPUT_ALL_PL_KR='Metacongo_kaiju__ALL_PL.krona'
 
 # getting reads list"
 
-$ grep -w 'U' $Metacongo_kaiju__ALL_RVDB.out |awk '{print $2}' > Unclassified_from_rvbd.list
+$ grep -w 'U' Metacongo_kaiju__ALL_RVDB.out |awk '{print $2}' > Unclassified_from_rvbd.list
 
 $ # Extracting Unclassified reads from original fastq 
 
 # Extract reads
 
 $ seqtk subseq EPNC_trim_ready_clean_R1.fq.gz  Unclassified_from_rvbd.list  | gzip > F_Unc_for_pl.fq.gz
-$ seqtk subseq R_READS='EPNC_trim_ready_clean_R2.fq.gz   Unclassified_from_rvbd.list  | gzip > R_Unc.for_pl.fq.gz
+$ seqtk subseq EPNC_trim_ready_clean_R2.fq.gz   Unclassified_from_rvbd.list  | gzip > R_Unc.for_pl.fq.gz
 $ seqtk subseq EPNC_orphan_ready_clean.fq.gz  Unclassified_from_rvbd.list | gzip   > O_Unc.for_pl.fq.gz
 
 # Files ready for second round using rvdb..........
