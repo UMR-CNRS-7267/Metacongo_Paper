@@ -347,7 +347,7 @@ EPNC_trim_ready_clean_R2.fq.gz  79712668
 
 #Output for the profiling using NR_EUK
 # OUTPUT_PE_NR_EUK='Metacongo_kaiju__PE_NR_EUK.out'
-#OUTPUT_SE_NR_EUK='Metacongo_kaiju__SE_NR_EUK.out'
+# OUTPUT_SE_NR_EUK='Metacongo_kaiju__SE_NR_EUK.out'
 # OUTPUT_ALL_NR_EUK='Metacongo_kaiju__ALL_NR_EUK.out'
 
 # After merging the output of PE and SE have to create krona file
@@ -372,6 +372,26 @@ $ cat  Metacongo_kaiju__PE_NR_EUK.out Metacongo_kaiju__SE_NR_EUK.out > Metacongo
 
 
 # Adding full taxa names ... to output ...........
+
+$ kaiju-addTaxonNames -p  -t /kaiju_db/kaiju_db_nr_euk_2022-03-10/nodes.dmp \
+                          -n /kaiju_db/kaiju_db_nr_euk_2022-03-10/names.dmp \
+                          -i Metacongo_kaiju__ALL_NR_EUK.out  -o Metacongo_kaiju__ALL_NR_EUK.out_with_name.tsv"
+
+
+# Get read count for classified reads (Optional)
+
+$ echo "TOTAL REDS  COUNT: " $(wc -l  Metacongo_kaiju__ALL_NR_EUK.out |awk '{print $1}')
+
+$ echo "READ CLASSIFIED COUNT: " $(grep -w -c "C" Metacongo_kaiju__ALL_NR_EUK.out ) 
+
+
+# Cconverting to kaiju output to krona file
+
+$ kaiju2krona  -t /kaiju_db/kaiju_db_nr_euk_2022-03-10/nodes.dmp \
+             -n  /kaiju_db/kaiju_db_nr_euk_2022-03-10/names.dmp \
+              -i  Metacongo_kaiju__ALL_NR_EUK.out -o Metacongo_kaiju__ALL_NR_EUK.krona
+
+
 
 
 
