@@ -329,17 +329,11 @@ EPNC_trim_ready_clean_R2.fq.gz  79712668
 
 # Run kaiju on the data using databses: kaiju_db_nr_euk_2022-03-10 then the unclassified using this database will be used with 
 # kaiju_db_plasmids_2022-04-10 then the unclassfied will be used with kaiju_db_rvdb_2022-04-07 database.
-
- 
-
-
-
-
-
-
+# If you have a cluster with slurm (see Scripts folder for a script named kaiju_profiling_all_slurm__last.sh) and sbatch kaiju_profiling_all_slurm__last.sh to run it 
 
 ```
 
+> Using  ############# Using NR_EUK DATABASES #####################
 
 
 
