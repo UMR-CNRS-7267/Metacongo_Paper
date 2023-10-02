@@ -661,6 +661,61 @@ We will use these input for Kraken2
 * R2='R2_to_kraken2.fq.gz'
 * orphan='orphan_to_kraken2.fq.gz'
 
+#kraken2_report='metacongo_remaining_krake2.report'
+#kraken2_output='metacongo_remaining_krake2.out'
+
+#classified and unclassified reads
+#uncla_reads='unclassified#.fq'
+#cla_reads='classified#.fq'
+#$SLURM_CPUS_PER_TASK
+
+
+```bash
+# Profiling the remaining reads from kaiju using kraken2 Using default parameters
+
+# PAIRED
+$ kraken2 --use-names --threads 10 --db /home/databases/kraken2_bracken_ref_seq/standard_plus_PF/ \
+        --report metacongo_remaining_krake2.report  \
+        --gzip-compressed --use-names \
+        --paired  R1_to_kraken2.fq.gz R2_to_kraken2.fq.gz \
+        --output metacongo_remaining_krake2.out \
+        --unclassified-out unclassified#.fq --classified-out classified#.fq
+
+# ORPHANS
+
+
+$ kraken2  --db home/databases/kraken2_bracken_ref_seq/standard_plus_PF/ \
+            orphan_to_kraken2.fq.gz  --use-names --report orphan_kraken.report \
+            --output orphan_kraken.output \
+            --gzip-compressed --threads 10 \
+            --classified_from_orphan.fq  unclassified_from_orphan.fq
+
+# zipp fq files
+
+gzip *fq
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
