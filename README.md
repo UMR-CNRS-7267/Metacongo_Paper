@@ -773,6 +773,7 @@ metaspades.py --pe1-1 EPNC_trim_ready_clean_R1.fq.gz  --pe1-2 EPNC_trim_ready_cl
 
 # Binning assemblies 
 
+
 ## Megahit assembly binning
 
 ## Metaspades assembly binning
