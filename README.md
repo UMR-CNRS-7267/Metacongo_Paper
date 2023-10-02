@@ -394,7 +394,7 @@ $ kaiju2krona  -t /kaiju_db/kaiju_db_nr_euk_2022-03-10/nodes.dmp \
 
 # Creating html from krona fil
 
-$ ktImportText -o Metacongo_kaiju__ALL_NR_EUK.krona.html"  Metacongo_kaiju__ALL_NR_EUK.krona
+$ ktImportText -o Metacongo_kaiju__ALL_NR_EUK.krona.html  Metacongo_kaiju__ALL_NR_EUK.krona
 
 # Creating classification summary for phylum, class, order family, genus and species ...
 # using loop in bash
@@ -492,7 +492,7 @@ $ kaiju2krona  -t /kaiju_db/kaiju_db_rvdb_2022-04-07/nodes.dmp \
 
 # Creating html from krona file ...
 
-$ ktImportText -o Metacongo_kaiju__ALL_RVDB.krona".html"  Metacongo_kaiju__ALL_RVDB.krona
+$ ktImportText -o Metacongo_kaiju__ALL_RVDB.krona.html  Metacongo_kaiju__ALL_RVDB.krona
 
 
 # Creating classification summary for phylum, class, order family, genus and species ..
@@ -574,71 +574,71 @@ $ cat Metacongo_kaiju__PE_PL.out  Metacongo_kaiju__SE_PL.out > Metacongo_kaiju__
 # Adding full taxa names ... to output ...
 
 
-$ kaiju-addTaxonNames -p  -t $KAIJU_PL_NODES -n $KAIJU_PL_NAMES  -i $OUTPUT_ALL_PL  -o $OUTPUT_ALL_PL"_with_name.tsv"
+$ kaiju-addTaxonNames -p  -t /kaiju_db/kaiju_db_plasmids_2022-04-10/nodes.dmp \
+                          -n /kaiju_db/kaiju_db_plasmids_2022-04-10/names.dmp
+                          -i Metacongo_kaiju__ALL_PL.out  -o Metacongo_kaiju__ALL_PL.out"_with_name.tsv"
 
 
-echo "How many reads are classified" |tee -a analysis.log
+# How many reads are classified .....
 
-echo "TOTAL REDS  COUNT: " $(wc -l  $OUTPUT_ALL_PL |awk '{print $1}') |tee -a analysis.log
+$ echo "TOTAL REDS  COUNT: " $(wc -l  $Metacongo_kaiju__ALL_PL.out |awk '{print $1}') 
 
-echo "READ CLASSIFIED COUNT: " $(grep -w -c "C" $OUTPUT_ALL_PL ) |tee -a analysis.log
-
-
-echo "converting to kaiju output to krona file" |tee -a analysis.log
-
-kaiju2krona  -t $KAIJU_PL_NODES -n  $KAIJU_PL_NAMES -i $OUTPUT_ALL_PL -o $OUTPUT_ALL_PL_KR
+$ echo "READ CLASSIFIED COUNT: " $(grep -w -c "C" $Metacongo_kaiju__ALL_PL.out ) 
 
 
+# Converting to kaiju output to krona file
 
-echo "creating html from krona file" |tee -a analysis.log
-
-ktImportText -o $OUTPUT_ALL_PL_KR".html"  $OUTPUT_ALL_PL_KR
-
-
-echo "creating classification summary for phylum, class, order family, genus and species" |tee -a analysis.log
-
-#kaiju2table -t $KAIJU_NR_NODES -n $KAIJU_NR_NAMES -r genus -o $OUTPUT_NR"__summary" $OUTPUT_NR
-for i in phylum class order family genus species; do kaiju2table -t $KAIJU_PL_NODES -n $KAIJU_PL_NAMES -r $i -o $OUTPUT_ALL_PL"_"$i"__s
-ummary.tsv" $OUTPUT_ALL_PL; done
+$ kaiju2krona  -t /kaiju_db/kaiju_db_plasmids_2022-04-10/nodes.dmp \
+             -n  /home/databases/kaiju_db/kaiju_db_plasmids_2022-04-10/names.dmp \
+             -i Metacongo_kaiju__ALL_PL.out -o Metacongo_kaiju__ALL_PL.krona
 
 
 
-echo "Analysis finished for PL profiling  at : " echo$(date)  |tee -a analysis.log
+# Creating html from krona file...
+
+$ ktImportText -o Metacongo_kaiju__ALL_PL.krona.html  Metacongo_kaiju__ALL_PL.krona
+
+
+# Creating classification summary for phylum, class, order family, genus and species ...
+
+
+$ for i in phylum class order family genus species; do kaiju2table -t /kaiju_db/kaiju_db_plasmids_2022-04-10/nodes.dmp \
+                                                                  -n /kaiju_db/kaiju_db_plasmids_2022-04-10/names.dmp \
+                                                                  -r $i -o Metacongo_kaiju__ALL_PL.out"_"$i"__summary.tsv" Metacongo_kaiju__ALL_PL.out; done
 
 
 
-echo "############################################################################"
-
-echo "all runs finsihed ate :" echo $(date) |tee -a analysis.log
 
 
+# All runs finsihed   ..... 
 
-#kaiju2krona and kaiju2table need nodes and
+```
+
+> From here all the profiling step was done using kaiju, will get un profiled reads fomr this step then convert them to fastq
+> and profile them by another profiler with is Kraken2
+
+```bash
+# Extracting reads form PL outout
+
+# Going to extract reads not assigned from PL profiling ...
 
 
-#Extracting reads form PL outout
-
-echo "Going to extract reads not assigned from PL profiling ..."  |tee -a analysis.log
-
-
-grep -w 'U' $OUTPUT_ALL_PL  |awk '{print $2}' > Unclassified_from_PL.list
+$ grep -w 'U' Metacongo_kaiju__ALL_PL.out  |awk '{print $2}' > Unclassified_from_PL.list
 
 echo "Extracting Unclassified reads from original fastq" |tee -a analysis.log
 
 
 
-seqtk subseq $F_READS  Unclassified_from_PL.list  | gzip > R1_to_kraken2.fq.gz
-seqtk subseq $R_READS  Unclassified_from_PL.list  | gzip > R2_to_kraken2.fq.gz
-seqtk subseq $ORPHAN_READS  Unclassified_from_PL.list | gzip   > orphan_to_kraken2.fq.gz
+seqtk subseq EPNC_trim_ready_clean_R1.fq.gz  Unclassified_from_PL.list  | gzip > R1_to_kraken2.fq.gz
+seqtk subseq EPNC_trim_ready_clean_R1.fq.gz  Unclassified_from_PL.list  | gzip > R2_to_kraken2.fq.gz
+seqtk subseq EPNC_orphan_ready_clean.fq.gz  Unclassified_from_PL.list | gzip   > orphan_to_kraken2.fq.gz
 
 
 
 echo "ALL PROFLING DONE ................" |tee -a analysis.log
 
 
-echo "#################################################################"
-
-
+# #################################################################
 
 
 
