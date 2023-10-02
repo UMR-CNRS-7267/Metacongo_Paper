@@ -809,6 +809,7 @@ $ samtools index metacongo_sorted.bam
 $ rm metacongo.bam
 
 # Generating stats from the  mapping ..............
+
 bamtools stats -in metacongo_sorted.bam >mapping.stats
 
 
