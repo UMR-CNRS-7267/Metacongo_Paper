@@ -246,45 +246,46 @@ $ R_READS='EPNC_trim_R2.fq.gz'
 $ ORPHAN_READS='EPNC_orphan.fq.gz'
 $ HUMAN_BW2_INDEX='REF/GRCh38_noalt_as'
 
-$ OUT_SAM='Read_vs_human.sam'
-$ OUT_BAM='Read_vs_human.bam'
-$ OUT_UNMAPPED_BAM='Unmapped.bam'
+OUT_SAM='Read_vs_human.sam'
+OUT_BAM='Read_vs_human.bam'
+OUT_UNMAPPED_BAM='Unmapped.bam'
 
-$ OUT_BAM_SORTED='Unmapped_sorted.bam'
-$ UNMAPPED_LIST='Unmapped.list'
+OUT_BAM_SORTED='Unmapped_sorted.bam'
+UNMAPPED_LIST='Unmapped.list'
+
 
 
 
 # Run bowtie2 to map reads to human genome index
 
-$ bowtie2 --very-sensitive-local -x $HUMAN_BW2_INDEX -1 $F_READS  -2 $R_READS -U $ORPHAN_READS -S $OUT_SAM -p $SLURM_CPUS_PER_TASK
+$ bowtie2 --very-sensitive-local -x REF/GRCh38_noalt_as -1 EPNC_trim_R1.fq.gz  -2 EPNC_trim_R2.fq.gz -U EPNC_orphan.fq.gz -S Read_vs_human.sam -p 4
 
 # Converting sam to bam 
 
-$ samtools view -S -bh $OUT_SAM > $OUT_BAM
+$ samtools view -S -bh Read_vs_human.sam > Read_vs_human.bam
 
 # Sort bam file
 
-$ samtools sort $OUT_BAM -o $OUT_BAM_SORTED
+$ samtools sort Read_vs_human.bam -o Read_vs_human_sorted.bam
 
 # Getting some stats from the whole BAM file  (Optional)
 
-$ bamtools stats -in $OUT_BAM_SORTED >mapping_stat_from_whole_bam.stats
+$ bamtools stats -in Read_vs_human_sorted.bam >mapping_stat_from_whole_bam.stats
 
 # Getting unmapped reads from the bam file ....
 
-$ samtools view -b -f 4 $OUT_BAM_SORTED > $OUT_UNMAPPED_BAM
+$ samtools view -b -f 4 Read_vs_human_sorted.bam > Unmapped.bam
 
 # This line produce the unmapped list BUT with duplication
 # Have to remove duplicated reads at the end using seqkit
 
-$ samtools view $OUT_UNMAPPED_BAM  |awk '{print $1}' >$UNMAPPED_LIST
+$ samtools view  Unmapped.bam  |awk '{print $1}' > Unmapped.list
 
 # Using seqtk to get unmapped reads in fastq format ...
 
-$ seqtk subseq $F_READS  $UNMAPPED_LIST  | gzip > EPNC_trim_no_human_R1.fq.gz
-$ seqtk subseq $R_READS  $UNMAPPED_LIST  | gzip > EPNC_trim_no_human_R2.fq.gz
-$ seqtk subseq $ORPHAN_READS   $UNMAPPED_LIST | gzip   > EPNC_orphan_no_human.fq.gz
+$ seqtk subseq EPNC_trim_R1.fq.gz   Unmapped.list  | gzip > EPNC_trim_no_human_R1.fq.gz
+$ seqtk subseq EPNC_trim_R2.fq.gz   Unmapped.list  | gzip > EPNC_trim_no_human_R2.fq.gz
+$ seqtk subseq EPNC_orphan.fq.gz    Unmapped.list | gzip   > EPNC_orphan_no_human.fq.gz
 
 # Rename files (Optional)
 $ mv EPNC_trim_no_human_R1.fq.gz  EPNC_trim_ready_R1.fq.gz
@@ -293,7 +294,7 @@ $ mv EPNC_orphan_no_human.fq.gz   EPNC_orphan_ready.fq.gz
 
 # Puts these files in another folder
 $ mkdir READY_FASTQ_FILES
-mv EPNC_trim_ready_R1.fq.gz EPNC_trim_ready_R2.fq.gz EPNC_orphan_ready.fq.gz 6.2.READY_FASTQ_FILES
+mv EPNC_trim_ready_R1.fq.gz EPNC_trim_ready_R2.fq.gz EPNC_orphan_ready.fq.gz READY_FASTQ_FILES
 
 # If you have a cluster with slurm (see Scripts folder for a script named fastqc_filtered_data_slurm.sh) and sbatch bowtie2_vs_human_slurm.sh to run it
 ```
@@ -640,9 +641,8 @@ echo "ALL PROFLING DONE ................" |tee -a analysis.log
 
 # #################################################################
 
-
-
 ```
+
 
 
 
