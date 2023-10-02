@@ -645,7 +645,7 @@ seqtk subseq EPNC_orphan_ready_clean.fq.gz  Unclassified_from_PL.list | gzip   >
 
 
 
-echo "ALL PROFLING DONE ................" |tee -a analysis.log
+
 
 
 # #################################################################
@@ -715,13 +715,44 @@ $ ktImportText -o orphan_kraken2.KRONA.html orphan_kraken2.KRONA
 
 ```
 
-# Assembly (another approache to analyse the data)
+# Assembly (another approach to analyse the data)
 
 * Here we will assemble the data using two assembler, and bin assemblies using two binning tools. 
 * Megahit and Metaspades will be used as assemblers
 * Maxbin2 and Metabat2 will be used as binning tools
 
- 
+
+## Megahit assembly
+```bash
+
+$ mkdir -p ASSEMBLY/MEGAHIT_ASSEMBLY && cd ASSEMBLY/MEGAHIT_ASSEMBLY/
+
+#Get files symlinked here ....
+
+$ ln -s  ../../HUMAN_CONTA_REMOVAL/READY_FASTQ_FILES_CLEAN/EPNC_orphan_ready_clean.fq.gz
+$ ln -s ../../HUMAN_CONTA_REMOVAL/READY_FASTQ_FILES_CLEAN/EPNC_trim_ready_clean_R1.fq.gz
+$ ln -s ../../HUMAN_CONTA_REMOVAL/READY_FASTQ_FILES_CLEAN/EPNC_trim_ready_clean_R2.fq.gz
+
+#Run megahit
+
+$ megahit -1 EPNC_trim_ready_clean_R1.fq.gz  -2 EPNC_trim_ready_clean_R2.fq.gz -r EPNC_orphan_ready_clean.fq.gz \
+           -o metacongo_final_assembly \
+           -t 10  \
+           --min-count 2 --k-min 21 --k-max 127 --k-step 2 --min-contig-len 200 --tmp-dir .
+
+
+```
+## Metaspades assembly 
+
+```bash
+
+$ mkdir METASPADES_ASSEMBLY  && cd METASPADES_ASSEMBLY
+$ pwd 
+/workspaces/Metacongo_Paper/ASSEMBLY/METASPADES_ASSEMBLY
+
+
+
+```
 
 
 
