@@ -385,14 +385,14 @@ $ echo "TOTAL REDS  COUNT: " $(wc -l  Metacongo_kaiju__ALL_NR_EUK.out |awk '{pri
 $ echo "READ CLASSIFIED COUNT: " $(grep -w -c "C" Metacongo_kaiju__ALL_NR_EUK.out ) 
 
 
-# Cconverting to kaiju output to krona file
+# Converting to kaiju output to krona file
 
 $ kaiju2krona  -t /kaiju_db/kaiju_db_nr_euk_2022-03-10/nodes.dmp \
              -n  /kaiju_db/kaiju_db_nr_euk_2022-03-10/names.dmp \
               -i  Metacongo_kaiju__ALL_NR_EUK.out -o Metacongo_kaiju__ALL_NR_EUK.krona
 
 
-# Creating html from krona fil
+# Creating html from krona file
 
 $ ktImportText -o Metacongo_kaiju__ALL_NR_EUK.krona.html  Metacongo_kaiju__ALL_NR_EUK.krona
 
