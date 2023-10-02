@@ -790,11 +790,47 @@ $ mv final.contigs.fa metacong_megahit_assembly.fsa
 
 
 
+# Reference ... assembly file  Indexing ...............
+
+$ bowtie2-build -f metacong_megahit_assembly.fsa  metacong_megahit_assembly.fsa__indexed --threads 10
+
+# MAPP READS AGAINST THE INDEX
+
+$ bowtie2 -p 10 --very-sensitive-local  -x metacong_megahit_assembly.fsa__indexed -1 EPNC_trim_ready_clean_R1.fq.gz  -2 EPNC_trim_ready_clean_R2.fq.gz \
+                                        -U EPNC_orphan_ready_clean.fq.gz  |samtools view -bS - > metacongo.bam
+
+# SORTING bam file
+$ samtools sort metacongo.bam -o metacongo_sorted.bam
+
+#Indexing ...
+$ samtools index metacongo_sorted.bam
+
+# removing unwanted file  
+$ rm metacongo.bam
+
+# Generating stats from the  mapping ..............
+bamtools stats -in metacongo_sorted.bam >mapping.stats
 
 
+
+# Start binning contigs using metabat2
+
+
+runMetaBat.sh -m 1500 -t 10   metacong_megahit_assembly.fsa  metacongo_sorted.bam 
+
+
+# Start binning using maxbin2 ...........
 
 
 ```
+
+
+REF='metacong_megahit_assembly.fsa'
+INDEX=$REF"__indexed"
+R1='EPNC_trim_ready_clean_R1.fq.gz'
+R2='EPNC_trim_ready_clean_R2.fq.gz'
+ORPHAN='EPNC_orphan_ready_clean.fq.gz'
+MAPPING_MODE='--very-sensitive-local'
 
 
 
