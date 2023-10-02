@@ -804,6 +804,23 @@ metaspades.py --pe1-1 EPNC_trim_ready_clean_R1.fq.gz  --pe1-2 EPNC_trim_ready_cl
 
 # AMR identification in the whole assembly (Not in the Binned)
 
+> For this step we want to explore the presence of AMR genes but in all assembly
+
+```bash
+
+# Symlink assemblies (from megahit and metaspades ...)
+
+$ ln -s ../../ASSEMBLY/MEGAHIT_ASSEMBLY/metacongo_final_assembly/final.contigs.fa
+$ ln -s ../../ASSEMBLY/METASPADES_ASSEMBLY/metaspades_final_assembly_results/contigs.fasta
+
+#Renamed assemblies file for good tracking
+
+$ mv final.contigs.fa megahit_assembly.fa && mv contigs.fasta metaspades_assembly.fa
+
+
+
+
+```
 
 
 
