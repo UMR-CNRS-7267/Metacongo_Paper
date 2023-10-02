@@ -41,7 +41,7 @@ OUT_SAM='Read_vs_human.sam'
 OUT_BAM='Read_vs_human.bam'
 OUT_UNMAPPED_BAM='Unmapped.bam'
 
-OUT_BAM_SORTED='Unmapped_sorted.bam'
+OUT_BAM_SORTED='Read_vs_human_sorted.bam'
 UNMAPPED_LIST='Unmapped.list'
 
 
@@ -109,7 +109,7 @@ mv EPNC_orphan_no_human.fq.gz   EPNC_orphan_ready.fq.gz
 
 mkdir READY_FASTQ_FILES
 
-mv EPNC_trim_ready_R1.fq.gz EPNC_trim_ready_R2.fq.gz EPNC_orphan_ready.fq.gz 6.2.READY_FASTQ_FILES
+mv EPNC_trim_ready_R1.fq.gz EPNC_trim_ready_R2.fq.gz EPNC_orphan_ready.fq.gz READY_FASTQ_FILES
 
 
 
