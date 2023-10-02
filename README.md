@@ -392,7 +392,17 @@ $ kaiju2krona  -t /kaiju_db/kaiju_db_nr_euk_2022-03-10/nodes.dmp \
               -i  Metacongo_kaiju__ALL_NR_EUK.out -o Metacongo_kaiju__ALL_NR_EUK.krona
 
 
+# Creating html from krona fil
 
+$ ktImportText -o Metacongo_kaiju__ALL_NR_EUK.krona.html"  Metacongo_kaiju__ALL_NR_EUK.krona
+
+# Creating classification summary for phylum, class, order family, genus and species ...
+# using loop in bash
+
+$ for i in phylum class order family genus species; do kaiju2table \
+                                            -t /kaiju_db/kaiju_db_nr_euk_2022-03-10/nodes.dmp \
+                                            -n /kaiju_db/kaiju_db_nr_euk_2022-03-10/names.dmp \
+                                            -r $i -o Metacongo_kaiju__ALL_NR_EUK.out"_"$i"__summary.tsv" Metacongo_kaiju__ALL_NR_EUK.out; done
 
 
 
