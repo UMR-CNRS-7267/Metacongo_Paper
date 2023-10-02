@@ -750,6 +750,21 @@ $ mkdir METASPADES_ASSEMBLY  && cd METASPADES_ASSEMBLY
 $ pwd 
 /workspaces/Metacongo_Paper/ASSEMBLY/METASPADES_ASSEMBLY
 
+# Symlink files as usual 
+
+$ ln -s  ../../HUMAN_CONTA_REMOVAL/READY_FASTQ_FILES_CLEAN/EPNC_orphan_ready_clean.fq.gz
+$ ln -s ../../HUMAN_CONTA_REMOVAL/READY_FASTQ_FILES_CLEAN/EPNC_trim_ready_clean_R1.fq.gz
+$ ln -s ../../HUMAN_CONTA_REMOVAL/READY_FASTQ_FILES_CLEAN/EPNC_trim_ready_clean_R2.fq.gz
+
+
+#Run metaspades
+$ k_mer='21,23,25,27,29,31,33,35,37,39,41,43,45,47,49,51,53,55,57,59,61,63,65,67,69,71,73,75,77,79,81,83,85,87,91,93,95,97,99,1
+01,103,105,107,109,111,113,115,117,119,121,123,125,127'
+
+metaspades.py --pe1-1 EPNC_trim_ready_clean_R1.fq.gz  --pe1-2 EPNC_trim_ready_clean_R2.fq.gz \
+              -s  EPNC_orphan_ready_clean.fq.gz  -k $k_mer  -o metaspades_final_assembly_results
+
+
 
 
 ```
