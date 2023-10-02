@@ -742,6 +742,9 @@ $ megahit -1 EPNC_trim_ready_clean_R1.fq.gz  -2 EPNC_trim_ready_clean_R2.fq.gz -
 
 
 ```
+> Bonus (assembly statistics)
+
+
 ## Metaspades assembly 
 
 ```bash
@@ -765,9 +768,23 @@ metaspades.py --pe1-1 EPNC_trim_ready_clean_R1.fq.gz  --pe1-2 EPNC_trim_ready_cl
               -s  EPNC_orphan_ready_clean.fq.gz  -k $k_mer  -o metaspades_final_assembly_results
 
 
-
-
 ```
+> Bonus (assembly statistics)
+
+# Binning assemblies 
+## Megahit assembly binning
+## Metaspades assembly binning
+
+# Bins refinement 
+
+## Megahit Assembly Refined 
+## Metaspades Assembly Refined
+## Megahit Bins Refined renamed
+## Metaspades Bins Refined Renamed
+## Renamed Refined Merged
+
+
+
 
 
 
