@@ -773,8 +773,32 @@ metaspades.py --pe1-1 EPNC_trim_ready_clean_R1.fq.gz  --pe1-2 EPNC_trim_ready_cl
 
 # Binning assemblies 
 
-
 ## Megahit assembly binning
+
+```bash
+$ mkdir MEGAHIT_ASSEM_BIN
+
+# Symlink  fastq files and assembly
+
+$ ln -s   ../../ASSEMBLY/MEGAHIT_ASSEMBLY/EPNC_orphan_ready_clean.fq.gz
+$ ln -s   ../../ASSEMBLY/MEGAHIT_ASSEMBLY/EPNC_trim_ready_clean_R1.fq.gz
+$ ln -s   ../../ASSEMBLY/MEGAHIT_ASSEMBLY/EPNC_trim_ready_clean_R2.fq.gz
+$ ln -s   ../../ASSEMBLY/MEGAHIT_ASSEMBLY/metacongo_final_assembly/final.contigs.fa
+
+# Symlink assembly
+$ mv final.contigs.fa metacong_megahit_assembly.fsa
+
+
+
+
+
+
+
+```
+
+
+
+
 
 ## Metaspades assembly binning
 
