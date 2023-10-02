@@ -804,6 +804,8 @@ metaspades.py --pe1-1 EPNC_trim_ready_clean_R1.fq.gz  --pe1-2 EPNC_trim_ready_cl
 
 # AMR identification in the whole assembly (Not in the Binned)
 
+## Clustering assembly 
+
 > For this step we want to explore the presence of AMR genes but in all assembly
 
 ```bash
@@ -817,11 +819,30 @@ $ ln -s ../../ASSEMBLY/METASPADES_ASSEMBLY/metaspades_final_assembly_results/con
 
 $ mv final.contigs.fa megahit_assembly.fa && mv contigs.fasta metaspades_assembly.fa
 
+# Concatenate assembly files
+cat megahit_assembly.fa metaspades_assembly.fa > all_assembly.fasta
 
 
+$ mkdir Clustered_using_mmseq && cd Clustered_using_mmseq
+
+$ ln -s ../all_assembly.fasta
+
+#Run mmseq2 to clusterize the assembly (remove redundant contigs)
+$ mmseqs easy-cluster all_assembly.fasta clusterRes tmp --min-seq-id 0.8 -c 0.8 --cov-mode 1
+$ ll 
+clusterRes_all_seqs.fasta
+clusterRes_cluster.tsv
+clusterRes_rep_seq.fasta (This file will be used to scan for AMR)
 
 ```
 
+## AMRs detection
+
+```bash
+
+
+```
+ 
 
 
 
