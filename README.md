@@ -228,10 +228,10 @@ $ cd ../
 $ for i in ../QC_FILTERED_DATA/*gz; do ln -s $i ; done
 $ ll
 drwxr-xr-x 2 foo users 216 Nov 21 10:48 6.1.REF
-lrwxrwxrwx 1 foo users  41 Nov 21 10:58 EPNC_orphan_1.fq.gz -> ../5.QC_FILTERED_DATA/EPNC_orphan_1.fq.gz
-lrwxrwxrwx 1 foo users  41 Nov 21 10:58 EPNC_orphan_2.fq.gz -> ../5.QC_FILTERED_DATA/EPNC_orphan_2.fq.gz
-lrwxrwxrwx 1 foo users  40 Nov 21 10:58 EPNC_trim_R1.fq.gz -> ../5.QC_FILTERED_DATA/EPNC_trim_R1.fq.gz
-lrwxrwxrwx 1 foo users  40 Nov 21 10:58 EPNC_trim_R2.fq.gz -> ../5.QC_FILTERED_DATA/EPNC_trim_R2.fq.gz
+lrwxrwxrwx 1 foo users  41 Nov 21 10:58 EPNC_orphan_1.fq.gz -> ../QC_FILTERED_DATA/EPNC_orphan_1.fq.gz
+lrwxrwxrwx 1 foo users  41 Nov 21 10:58 EPNC_orphan_2.fq.gz -> ../QC_FILTERED_DATA/EPNC_orphan_2.fq.gz
+lrwxrwxrwx 1 foo users  40 Nov 21 10:58 EPNC_trim_R1.fq.gz -> ../QC_FILTERED_DATA/EPNC_trim_R1.fq.gz
+lrwxrwxrwx 1 foo users  40 Nov 21 10:58 EPNC_trim_R2.fq.gz -> ../QC_FILTERED_DATA/EPNC_trim_R2.fq.gz
 
 # Get data for input (Note orphan reads from R1 and R2 are merged with simple cat command)
 $ pwd 
@@ -241,8 +241,8 @@ $ pwd
 $ for i in ../QC_FILTERED_DATA/*gz; do ln -s $i ; done
 $ ll
 drwxr-xr-x 2 foo users        216 Nov 21  2022 6.1.REF
-lrwxrwxrwx 1 foo users         41 Nov 21  2022 EPNC_orphan_1.fq.gz -> ../5.QC_FILTERED_DATA/EPNC_orphan_1.fq.gz
-lrwxrwxrwx 1 foo users         41 Nov 21  2022 EPNC_orphan_2.fq.gz -> ../5.QC_FILTERED_DATA/EPNC_orphan_2.fq.gz
+lrwxrwxrwx 1 foo users         41 Nov 21  2022 EPNC_orphan_1.fq.gz -> ../QC_FILTERED_DATA/EPNC_orphan_1.fq.gz
+lrwxrwxrwx 1 foo users         41 Nov 21  2022 EPNC_orphan_2.fq.gz -> ../QC_FILTERED_DATA/EPNC_orphan_2.fq.gz
 -rw-r--r-- 1 foo users  468447598 Nov 21  2022 EPNC_orphan.fq.gz #This file is from cat EPNC_orphan_1.fq.gz EPNC_orphan_2.fq.gz> EPNC_orphan.fq.gz 
 lrwxrwxrwx 1 foo users         40 Nov 21  2022 EPNC_trim_R1.fq.gz -> ../QC_FILTERED_DATA/EPNC_trim_R1.fq.gz
 lrwxrwxrwx 1 foo users         40 Nov 21  2022 EPNC_trim_R2.fq.gz -> ../QC_FILTERED_DATA/EPNC_trim_R2.fq.gz
@@ -318,6 +318,8 @@ mv EPNC_trim_ready_R1.fq.gz EPNC_trim_ready_R2.fq.gz EPNC_orphan_ready.fq.gz REA
 >> ***This step  needs databases so be sur to have enough place in your local server ...***
 
 # PROFILING 
+
+## Kaiju Profiling 
 
 ```bash
 $ mkdir PROFILING && cd PROFILING
@@ -650,7 +652,14 @@ echo "ALL PROFLING DONE ................" |tee -a analysis.log
 
 ```
 
+## kraken2 Profiling
 
+We will use these input for Kraken2
+
+* kraken2_db_path='/home/databases/kraken2_bracken_ref_seq/standard_plus_PF/'
+* R1='R1_to_kraken2.fq.gz'
+* R2='R2_to_kraken2.fq.gz'
+* orphan='orphan_to_kraken2.fq.gz'
 
 
 
