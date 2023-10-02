@@ -8,7 +8,7 @@ This repository contains descriptions of the tools and methods used to analyze m
 
 # Prerequisites
 To reproduce these analyses we need the following tools installed in your local machine (Linux)
-(For our side we used : CentOS Linux release 7.5.1804 (Core) Maipo) 
+(For our side we used : CentOS Linux release 7.5.1804 (Core) Maipo) ....
 
 # Tools and scripts
 
@@ -70,11 +70,18 @@ kaiju_db_rvdb_2022-04-07 (983MB)  available at  https://kaiju-idx.s3.eu-central-
 
 # Getting the raw data 
 
-* The technology used is Illumina, in paired end mode.
-* The data are made available in Sequence Read Archive from NCBI and can be requested using these accessions numbers: XXXXX, YYYY
+* The technology used is Illumina, in paired end mode (2X150).
+* The data are made available in Sequence Read Archive from NCBI from bioproject : PRJNA1021800
 *  Feel free to use your favorite tools to get these files in local.
 * If you want to reproduce these analysis, please renames these files according to this manual:
 
+
+```bash
+
+# Feel free to organize your project as you want ...
+$ mkdir -p workspaces/Metacongo_Paper  && cd workspaces/Metacongo_Paper
+
+```
 # Renaming data files (Optional)
 
 
