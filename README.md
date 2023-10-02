@@ -336,7 +336,7 @@ EPNC_trim_ready_clean_R2.fq.gz  79712668
 > Using  ############# Using NR_EUK DATABASES #####################
 
 ```bash
-# Runing  kaiju-multi on paired end reads ...
+# Running   kaiju-multi on paired end reads ...
 # KAIJU_NR_EUK_DB='/kaiju_db/kaiju_db_nr_euk_2022-03-10/kaiju_db_nr_euk.fmi'
 # KAIJU_NR_EUK_NODES='/kaiju_db/kaiju_db_nr_euk_2022-03-10/nodes.dmp'
 # KAIJU_NR_EUK_NAMES='/kaiju_db/kaiju_db_nr_euk_2022-03-10/names.dmp'
@@ -360,7 +360,7 @@ $ kaiju-multi -z 4 -E 0.01 -t /kaiju_db/kaiju_db_nr_euk_2022-03-10/nodes.dmp \
                            -j EPNC_trim_ready_clean_R2.fq.gz  > Metacongo_kaiju__PE_NR_EUK.out
 
 
-# Runing  kaiju (not multi) on orphan merged reads ...
+# Running   kaiju (not multi) on orphan merged reads ...
 $ kaiju -z 4 -E 0.01 -t /kaiju_db/kaiju_db_nr_euk_2022-03-10/nodes.dmp \
                      -f /kaiju_db/kaiju_db_nr_euk_2022-03-10/kaiju_db_nr_euk.fmi \
                      -i EPNC_orphan_ready_clean.fq.gz  > $Metacongo_kaiju__SE_NR_EUK.out
@@ -406,7 +406,103 @@ $ for i in phylum class order family genus species; do kaiju2table \
 
 
 
+
+# At this stage profiling the data using kaiju_db_nr_euk_2022-03-10 is done we will get un_profiled data from this step and proceed with another kaijudb
+
 ``` 
+
+>  ################# Using RVDB DATABASE ##################################
+
+> we are going to extract the unclassified reads from the output and re_run on Virus db
+
+
+#Names after First run for  RVBD classification
+F_Unc_from_nr_euk='F_Unc_for_rvbd.fq.gz'
+R_Unc_from_nr_euk='R_Unc_for_rvbd.fq.gz'
+O_Unc_from_nr_euk='O_Unc_for_rvbd.fq.gz'
+
+#Output for the profiling using RVBD
+OUTPUT_PE_RVDB='Metacongo_kaiju__PE_RVDB.out'
+OUTPUT_SE_RVDB='Metacongo_kaiju__SE_RVDB.out'
+OUTPUT_ALL_RVDB='Metacongo_kaiju__ALL_RVDB.out'
+
+#After merging the output of PE and SE have to create krona file
+OUTPUT_ALL_RVDB_KR='Metacongo_kaiju__ALL_RVDB.krona'
+
+KAIJU_RVDB_DB='/home/databases/kaiju_db/kaiju_db_rvdb_2022-04-07/kaiju_db_rvdb.fmi'
+KAIJU_RVDB_NODES='/home/databases/kaiju_db/kaiju_db_rvdb_2022-04-07/nodes.dmp'
+KAIJU_RVDB_NAMES='/home/databases/kaiju_db/kaiju_db_rvdb_2022-04-07/names.dmp'
+
+```bash
+
+# Getting list (Read ID)
+
+$ grep -w 'U' Metacongo_kaiju__ALL_NR_EUK.out |awk '{print $2}' > Unclassified_from_nr_euk.list
+
+# Extracting Unclassified reads from original fastq
+
+seqtk subseq  EPNC_trim_ready_clean_R1.fq.gz  Unclassified_from_nr_euk.list  | gzip > F_Unc_for_rvbd.fq.gz
+seqtk subseq  REPNC_trim_ready_clean_R2.fq.gz  Unclassified_from_nr_euk.list  | gzip > $R_Unc_for_rvbd.fq.gz
+seqtk subseq  EPNC_orphan_ready_clean.fq.gz  Unclassified_from_nr_euk.list | gzip > O_Unc_for_rvbd.fq.gz
+
+# Files are ready for second round of profiling 
+
+echo "1:Running   kaiju-multi on paired end reads ..." |tee -a analysis.log
+
+kaiju-multi -z 2 -E 0.01 -t /home/databases/kaiju_db/kaiju_db_rvdb_2022-04-07/nodes.dmp \
+                         -f /home/databases/kaiju_db/kaiju_db_rvdb_2022-04-07/kaiju_db_rvdb.fmi \
+                        -i F_Unc_for_rvbd.fq.gz -j R_Unc_for_rvbd.fq.gz  > Metacongo_kaiju__PE_RVDB.out
+
+
+
+
+# Running  kaiju (not multi) on orphan merged reads ..." |tee -a analysis.log
+
+kaiju -z $SLURM_CPUS_PER_TASK -E 0.01 -t $KAIJU_RVDB_NODES  -f $KAIJU_RVDB_DB -i $O_Unc_from_nr_euk  > $OUTPUT_SE_RVDB
+
+
+echo "Combining the output for PE and ORPHAN (SE) here" |tee -a analysis.log
+
+cat $OUTPUT_PE_RVDB $OUTPUT_SE_RVDB > $OUTPUT_ALL_RVDB
+
+
+echo "Adding full taxa names ... to output" |tee -a analysis.log
+
+kaiju-addTaxonNames -p  -t $KAIJU_RVDB_NODES -n $KAIJU_RVDB_NAMES  -i $OUTPUT_ALL_RVDB  -o $OUTPUT_ALL_RVDB"_with_name.tsv"
+
+
+echo "How many reads are classified" |tee -a analysis.log
+
+echo "TOTAL REDS  COUNT: " $(wc -l  $OUTPUT_ALL_RVDB |awk '{print $1}') |tee -a analysis.log
+
+echo "READ CLASSIFIED COUNT: " $(grep -w -c "C" $OUTPUT_ALL_RVDB ) |tee -a analysis.log
+
+
+echo "converting to kaiju output to krona file" |tee -a analysis.log
+
+kaiju2krona  -t $KAIJU_RVDB_NODES -n  $KAIJU_RVDB_NAMES -i $OUTPUT_ALL_RVDB -o $OUTPUT_ALL_RVDB_KR
+
+
+
+echo "creating html from krona file" |tee -a analysis.log
+
+ktImportText -o $OUTPUT_ALL_RVDB_KR".html"  $OUTPUT_ALL_RVDB_KR
+
+
+echo "creating classification summary for phylum, class, order family, genus and species" |tee -a analysis.log
+
+#kaiju2table -t $KAIJU_NR_NODES -n $KAIJU_NR_NAMES -r genus -o $OUTPUT_NR"__summary" $OUTPUT_NR
+for i in phylum class order family genus species; do kaiju2table -t $KAIJU_RVDB_NODES -n $KAIJU_RVDB_NAMES -r $i -o $OUTPUT_ALL_RVDB"_"
+$i"__summary.tsv" $OUTPUT_ALL_RVDB; done
+
+
+
+
+```
+
+
+
+
 
 
 
