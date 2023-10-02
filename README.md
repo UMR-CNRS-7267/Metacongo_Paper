@@ -783,6 +783,14 @@ metaspades.py --pe1-1 EPNC_trim_ready_clean_R1.fq.gz  --pe1-2 EPNC_trim_ready_cl
 ## Metaspades Bins Refined Renamed
 ## Renamed Refined Merged
 
+# BLOBOLOGY
+# Bins Quantification
+# Bin Classification
+
+# Bins Taxonomy using GTDB Database
+
+
+
 
 
 
