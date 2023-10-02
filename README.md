@@ -685,7 +685,7 @@ $ kraken2 --use-names --threads 10 --db /home/databases/kraken2_bracken_ref_seq/
 
 
 $ kraken2  --db home/databases/kraken2_bracken_ref_seq/standard_plus_PF/ \
-            orphan_to_kraken2.fq.gz  --use-names --report orphan_kraken.report \
+             orphan_to_kraken2.fq.gz  --use-names --report orphan_kraken.report \
             --output orphan_kraken.output \
             --gzip-compressed --threads 10 \
             --classified_from_orphan.fq  unclassified_from_orphan.fq
