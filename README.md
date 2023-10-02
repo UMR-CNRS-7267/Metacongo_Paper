@@ -482,7 +482,7 @@ $ cat Metacongo_kaiju__PE_RVDB.out Metacongo_kaiju__SE_RVDB.out > Metacongo_kaij
 
 $ kaiju-addTaxonNames -p  -t /kaiju_db/kaiju_db_rvdb_2022-04-07/nodes.dmp \
                         -n /kaiju_db/kaiju_db_rvdb_2022-04-07/names.dmp \
-                        -i Metacongo_kaiju__ALL_RVDB.out  -o Metacongo_kaiju__ALL_RVDB.out"_with_name.tsv"
+                        -i Metacongo_kaiju__ALL_RVDB.out  -o Metacongo_kaiju__ALL_RVDB.out"_with_name.tsv
 
 
 # How many reads are classified....
