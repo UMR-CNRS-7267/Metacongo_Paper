@@ -441,64 +441,215 @@ $ grep -w 'U' Metacongo_kaiju__ALL_NR_EUK.out |awk '{print $2}' > Unclassified_f
 
 # Extracting Unclassified reads from original fastq
 
-seqtk subseq  EPNC_trim_ready_clean_R1.fq.gz  Unclassified_from_nr_euk.list  | gzip > F_Unc_for_rvbd.fq.gz
-seqtk subseq  REPNC_trim_ready_clean_R2.fq.gz  Unclassified_from_nr_euk.list  | gzip > $R_Unc_for_rvbd.fq.gz
-seqtk subseq  EPNC_orphan_ready_clean.fq.gz  Unclassified_from_nr_euk.list | gzip > O_Unc_for_rvbd.fq.gz
+$ seqtk subseq  EPNC_trim_ready_clean_R1.fq.gz  Unclassified_from_nr_euk.list  | gzip > F_Unc_for_rvbd.fq.gz
+$ seqtk subseq  REPNC_trim_ready_clean_R2.fq.gz  Unclassified_from_nr_euk.list  | gzip > $R_Unc_for_rvbd.fq.gz
+$ seqtk subseq  EPNC_orphan_ready_clean.fq.gz  Unclassified_from_nr_euk.list | gzip > O_Unc_for_rvbd.fq.gz
 
 # Files are ready for second round of profiling 
 
-echo "1:Running   kaiju-multi on paired end reads ..." |tee -a analysis.log
+# Running   kaiju-multi on paired end reads .....
 
-kaiju-multi -z 2 -E 0.01 -t /home/databases/kaiju_db/kaiju_db_rvdb_2022-04-07/nodes.dmp \
-                         -f /home/databases/kaiju_db/kaiju_db_rvdb_2022-04-07/kaiju_db_rvdb.fmi \
+$ kaiju-multi -z 2 -E 0.01 -t /kaiju_db/kaiju_db_rvdb_2022-04-07/nodes.dmp \
+                         -f /kaiju_db/kaiju_db_rvdb_2022-04-07/kaiju_db_rvdb.fmi \
                         -i F_Unc_for_rvbd.fq.gz -j R_Unc_for_rvbd.fq.gz  > Metacongo_kaiju__PE_RVDB.out
 
 
 
 
-# Running  kaiju (not multi) on orphan merged reads ..." |tee -a analysis.log
+$ Running  kaiju (not multi) on orphan merged reads ......
 
-kaiju -z $SLURM_CPUS_PER_TASK -E 0.01 -t $KAIJU_RVDB_NODES  -f $KAIJU_RVDB_DB -i $O_Unc_from_nr_euk  > $OUTPUT_SE_RVDB
-
-
-echo "Combining the output for PE and ORPHAN (SE) here" |tee -a analysis.log
-
-cat $OUTPUT_PE_RVDB $OUTPUT_SE_RVDB > $OUTPUT_ALL_RVDB
+$ kaiju -z 4  -E 0.01 -t /kaiju_db/kaiju_db_rvdb_2022-04-07/nodes.dmp \
+                    -f /kaiju_db/kaiju_db_rvdb_2022-04-07/kaiju_db_rvdb.fmi \
+                    -i O_Unc_for_rvbd.fq.gz  > Metacongo_kaiju__SE_RVDB.out
 
 
-echo "Adding full taxa names ... to output" |tee -a analysis.log
+# Combining the output for PE and ORPHAN (SE) here... 
 
-kaiju-addTaxonNames -p  -t $KAIJU_RVDB_NODES -n $KAIJU_RVDB_NAMES  -i $OUTPUT_ALL_RVDB  -o $OUTPUT_ALL_RVDB"_with_name.tsv"
-
-
-echo "How many reads are classified" |tee -a analysis.log
-
-echo "TOTAL REDS  COUNT: " $(wc -l  $OUTPUT_ALL_RVDB |awk '{print $1}') |tee -a analysis.log
-
-echo "READ CLASSIFIED COUNT: " $(grep -w -c "C" $OUTPUT_ALL_RVDB ) |tee -a analysis.log
+$ cat Metacongo_kaiju__PE_RVDB.out Metacongo_kaiju__SE_RVDB.out > Metacongo_kaiju__ALL_RVDB.out
 
 
-echo "converting to kaiju output to krona file" |tee -a analysis.log
+#  Adding full taxa names ... to output
 
-kaiju2krona  -t $KAIJU_RVDB_NODES -n  $KAIJU_RVDB_NAMES -i $OUTPUT_ALL_RVDB -o $OUTPUT_ALL_RVDB_KR
-
-
-
-echo "creating html from krona file" |tee -a analysis.log
-
-ktImportText -o $OUTPUT_ALL_RVDB_KR".html"  $OUTPUT_ALL_RVDB_KR
+$ kaiju-addTaxonNames -p  -t /kaiju_db/kaiju_db_rvdb_2022-04-07/nodes.dmp \
+                        -n /kaiju_db/kaiju_db_rvdb_2022-04-07/names.dmp \
+                        -i Metacongo_kaiju__ALL_RVDB.out  -o Metacongo_kaiju__ALL_RVDB.out"_with_name.tsv"
 
 
-echo "creating classification summary for phylum, class, order family, genus and species" |tee -a analysis.log
+# How many reads are classified....
 
-#kaiju2table -t $KAIJU_NR_NODES -n $KAIJU_NR_NAMES -r genus -o $OUTPUT_NR"__summary" $OUTPUT_NR
-for i in phylum class order family genus species; do kaiju2table -t $KAIJU_RVDB_NODES -n $KAIJU_RVDB_NAMES -r $i -o $OUTPUT_ALL_RVDB"_"
-$i"__summary.tsv" $OUTPUT_ALL_RVDB; done
+$ echo "TOTAL REDS  COUNT: " $(wc -l  Metacongo_kaiju__ALL_RVDB.out |awk '{print $1}') 
+
+$ echo "READ CLASSIFIED COUNT: " $(grep -w -c "C" Metacongo_kaiju__ALL_RVDB.out ) |tee -a analysis.log
+
+
+# converting to kaiju output to krona file"
+
+$ kaiju2krona  -t /kaiju_db/kaiju_db_rvdb_2022-04-07/nodes.dmp \
+             -n  /kaiju_db/kaiju_db_rvdb_2022-04-07/names.dmp \
+             -i Metacongo_kaiju__ALL_RVDB.out -o Metacongo_kaiju__ALL_RVDB.krona
+
+
+
+# Creating html from krona file ...
+
+$ ktImportText -o Metacongo_kaiju__ALL_RVDB.krona".html"  Metacongo_kaiju__ALL_RVDB.krona
+
+
+# Creating classification summary for phylum, class, order family, genus and species ..
+
+$ for i in phylum class order family genus species; do kaiju2table  \
+                        -t /kaiju_db/kaiju_db_rvdb_2022-04-07/nodes.dmp \
+                        -n /kaiju_db/kaiju_db_rvdb_2022-04-07/names.dmp \
+                        -r $i -o Metacongo_kaiju__ALL_RVDB.out"_"$i"__summary.tsv" Metacongo_kaiju__ALL_RVDB.out; done
 
 
 
 
 ```
+
+>  ################# Using RVDB Plasmid databse ##################################
+
+Using PL (for plasmids) DATABASE
+
+Going to extract the unclassified reads from  previous analysis output and re_run on Plasmid db
+
+
+KAIJU_PL_DB='/home/databases/kaiju_db/kaiju_db_plasmids_2022-04-10/kaiju_db_plasmids.fmi'
+KAIJU_PL_NODES='/home/databases/kaiju_db/kaiju_db_plasmids_2022-04-10/nodes.dmp'
+KAIJU_PL_NAMES='/home/databases/kaiju_db/kaiju_db_plasmids_2022-04-10/names.dmp'
+
+
+#Names after First run for PLASMID classification
+F_Unc_from_rvbd='F_Unc_for_pl.fq.gz'
+R_Unc_from_rvbd='R_Unc.for_pl.fq.gz'
+O_Unc_from_rvbd='O_Unc.for_pl.fq.gz'
+
+#Output for the profiling using PL
+OUTPUT_PE_PL='Metacongo_kaiju__PE_PL.out'
+OUTPUT_SE_PL='Metacongo_kaiju__SE_PL.out'
+OUTPUT_ALL_PL='Metacongo_kaiju__ALL_PL.out'
+
+#After merging the output of PE and SE have to create krona file
+OUTPUT_ALL_PL_KR='Metacongo_kaiju__ALL_PL.krona'
+
+
+
+
+```bash
+
+# getting reads list"
+
+$ grep -w 'U' $Metacongo_kaiju__ALL_RVDB.out |awk '{print $2}' > Unclassified_from_rvbd.list
+
+$ # Extracting Unclassified reads from original fastq 
+
+# Extract reads
+
+$ seqtk subseq EPNC_trim_ready_clean_R1.fq.gz  Unclassified_from_rvbd.list  | gzip > F_Unc_for_pl.fq.gz
+$ seqtk subseq R_READS='EPNC_trim_ready_clean_R2.fq.gz   Unclassified_from_rvbd.list  | gzip > R_Unc.for_pl.fq.gz
+$ seqtk subseq EPNC_orphan_ready_clean.fq.gz  Unclassified_from_rvbd.list | gzip   > O_Unc.for_pl.fq.gz
+
+# Files ready for second round using rvdb..........
+
+echo "1:Runing  kaiju-multi on paired end reads ..." 
+
+$ kaiju-multi -z 4 -E 0.01 -t /kaiju_db/kaiju_db_plasmids_2022-04-10/nodes.dmp \
+                         -f /kaiju_db/kaiju_db_plasmids_2022-04-10/kaiju_db_plasmids.fmi \
+                        -i F_Unc_for_pl.fq.gz -j R_Unc.for_pl.fq.gz  > Metacongo_kaiju__PE_PL.out
+
+# Runing  kaiju (not multi) on orphan merged reads ...
+
+
+
+$ kaiju -z 4 -E 0.01 -t /kaiju_db/kaiju_db_plasmids_2022-04-10/nodes.dmp \
+                     -f /kaiju_db/kaiju_db_plasmids_2022-04-10/kaiju_db_plasmids.fmi \
+                    -i O_Unc.for_pl.fq.gz  > Metacongo_kaiju__SE_PL.out
+
+
+
+# Combining the output for PE and ORPHAN (SE) here ....
+
+$ cat Metacongo_kaiju__PE_PL.out  Metacongo_kaiju__SE_PL.out > Metacongo_kaiju__ALL_PL.out
+
+# Adding full taxa names ... to output ...
+
+
+$ kaiju-addTaxonNames -p  -t $KAIJU_PL_NODES -n $KAIJU_PL_NAMES  -i $OUTPUT_ALL_PL  -o $OUTPUT_ALL_PL"_with_name.tsv"
+
+
+echo "How many reads are classified" |tee -a analysis.log
+
+echo "TOTAL REDS  COUNT: " $(wc -l  $OUTPUT_ALL_PL |awk '{print $1}') |tee -a analysis.log
+
+echo "READ CLASSIFIED COUNT: " $(grep -w -c "C" $OUTPUT_ALL_PL ) |tee -a analysis.log
+
+
+echo "converting to kaiju output to krona file" |tee -a analysis.log
+
+kaiju2krona  -t $KAIJU_PL_NODES -n  $KAIJU_PL_NAMES -i $OUTPUT_ALL_PL -o $OUTPUT_ALL_PL_KR
+
+
+
+echo "creating html from krona file" |tee -a analysis.log
+
+ktImportText -o $OUTPUT_ALL_PL_KR".html"  $OUTPUT_ALL_PL_KR
+
+
+echo "creating classification summary for phylum, class, order family, genus and species" |tee -a analysis.log
+
+#kaiju2table -t $KAIJU_NR_NODES -n $KAIJU_NR_NAMES -r genus -o $OUTPUT_NR"__summary" $OUTPUT_NR
+for i in phylum class order family genus species; do kaiju2table -t $KAIJU_PL_NODES -n $KAIJU_PL_NAMES -r $i -o $OUTPUT_ALL_PL"_"$i"__s
+ummary.tsv" $OUTPUT_ALL_PL; done
+
+
+
+echo "Analysis finished for PL profiling  at : " echo$(date)  |tee -a analysis.log
+
+
+
+echo "############################################################################"
+
+echo "all runs finsihed ate :" echo $(date) |tee -a analysis.log
+
+
+
+#kaiju2krona and kaiju2table need nodes and
+
+
+#Extracting reads form PL outout
+
+echo "Going to extract reads not assigned from PL profiling ..."  |tee -a analysis.log
+
+
+grep -w 'U' $OUTPUT_ALL_PL  |awk '{print $2}' > Unclassified_from_PL.list
+
+echo "Extracting Unclassified reads from original fastq" |tee -a analysis.log
+
+
+
+seqtk subseq $F_READS  Unclassified_from_PL.list  | gzip > R1_to_kraken2.fq.gz
+seqtk subseq $R_READS  Unclassified_from_PL.list  | gzip > R2_to_kraken2.fq.gz
+seqtk subseq $ORPHAN_READS  Unclassified_from_PL.list | gzip   > orphan_to_kraken2.fq.gz
+
+
+
+echo "ALL PROFLING DONE ................" |tee -a analysis.log
+
+
+echo "#################################################################"
+
+
+
+
+
+```
+
+
+
+
+
+
+
 
 
 
