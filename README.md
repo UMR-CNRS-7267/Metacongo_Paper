@@ -834,15 +834,9 @@ $ mkdir Maxbin2_binning_results  && mv maxbin* Maxbin2_binning_results
 
 ```
 
-
-
-
-
-
-
-
 ## Metaspades assembly binning
 
+pwd in volcano here /home/bmoumen/Ascel/METAGENOMICS_CONGO/8.BINNING/8.2.METASPADES_ASSEMB_BIN
 
 # Bins refinement 
 
