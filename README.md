@@ -315,6 +315,26 @@ mv EPNC_trim_ready_R1.fq.gz EPNC_trim_ready_R2.fq.gz EPNC_orphan_ready.fq.gz 6.2
 $ mkdir PROFILING && cd PROFILING
 $ mkdir USING_KAIJU USING_KRAKEN2 && cd USING_KAIJU
 
+# Symlink files as usual
+
+$ ln -s ../../HUMAN_CONTA_REMOVAL/READY_FASTQ_FILES_CLEAN/EPNC_orphan_ready_clean.fq.gz
+$ ln -s ../../HUMAN_CONTA_REMOVAL/READY_FASTQ_FILES_CLEAN/EPNC_trim_ready_clean_R1.fq.gz 
+$ ln -s ../../HUMAN_CONTA_REMOVAL/READY_FASTQ_FILES_CLEAN/EPNC_trim_ready_clean_R2.fq.gz
+
+# For informations (Read count)
+
+EPNC_orphan_ready_clean.fq.gz   4699049
+EPNC_trim_ready_clean_R1.fq.gz  79712668
+EPNC_trim_ready_clean_R2.fq.gz  79712668
+
+# Run kaiju on the data using databses: kaiju_db_nr_euk_2022-03-10 then the unclassified using this database will be used with 
+# kaiju_db_plasmids_2022-04-10 then the unclassfied will be used with kaiju_db_rvdb_2022-04-07 database.
+
+ 
+
+
+
+
 
 
 
