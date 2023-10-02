@@ -335,7 +335,48 @@ EPNC_trim_ready_clean_R2.fq.gz  79712668
 
 > Using  ############# Using NR_EUK DATABASES #####################
 
+```bash
+# Runing  kaiju-multi on paired end reads ...
+# KAIJU_NR_EUK_DB='/kaiju_db/kaiju_db_nr_euk_2022-03-10/kaiju_db_nr_euk.fmi'
+# KAIJU_NR_EUK_NODES='/kaiju_db/kaiju_db_nr_euk_2022-03-10/nodes.dmp'
+# KAIJU_NR_EUK_NAMES='/kaiju_db/kaiju_db_nr_euk_2022-03-10/names.dmp'
 
+# F_READS='EPNC_trim_ready_clean_R1.fq.gz'
+# R_READS='EPNC_trim_ready_clean_R2.fq.gz'
+# ORPHAN_READS='EPNC_orphan_ready_clean.fq.gz'
+
+#Output for the profiling using NR_EUK
+# OUTPUT_PE_NR_EUK='Metacongo_kaiju__PE_NR_EUK.out'
+#OUTPUT_SE_NR_EUK='Metacongo_kaiju__SE_NR_EUK.out'
+# OUTPUT_ALL_NR_EUK='Metacongo_kaiju__ALL_NR_EUK.out'
+
+# After merging the output of PE and SE have to create krona file
+# OUTPUT_ALL_NR_EUK_KR='Metacongo_kaiju__ALL_NR_EUK.krona'
+
+
+$ kaiju-multi -z 4 -E 0.01 -t /kaiju_db/kaiju_db_nr_euk_2022-03-10/nodes.dmp \
+                           -f /kaiju_db/kaiju_db_nr_euk_2022-03-10/kaiju_db_nr_euk.fmi \
+                           -i EPNC_trim_ready_clean_R1.fq.gz\
+                           -j EPNC_trim_ready_clean_R2.fq.gz  > Metacongo_kaiju__PE_NR_EUK.out
+
+
+# Runing  kaiju (not multi) on orphan merged reads ...
+$ kaiju -z 4 -E 0.01 -t /kaiju_db/kaiju_db_nr_euk_2022-03-10/nodes.dmp \
+                     -f /kaiju_db/kaiju_db_nr_euk_2022-03-10/kaiju_db_nr_euk.fmi \
+                     -i EPNC_orphan_ready_clean.fq.gz  > $Metacongo_kaiju__SE_NR_EUK.out
+
+
+# Combining the output for PE and ORPHAN (SE) ...
+
+$ cat  Metacongo_kaiju__PE_NR_EUK.out Metacongo_kaiju__SE_NR_EUK.out > Metacongo_kaiju__ALL_NR_EUK.out
+
+
+# Adding full taxa names ... to output ...........
+
+
+
+
+``` 
 
 
 
