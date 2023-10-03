@@ -880,27 +880,14 @@ $ mkdir Metabat2_binning_results && mv metacongo_metaspades_assembly.fsa.depth.t
 
 # Start binning using maxbin2 ...........
 
-run_MaxBin.pl -contig $REF -out maxbin2_results -reads $R1  -reads2 $R2   -reads3 $ORPHAN  -min_contig_length 200 -thread $SL
-URM_CPUS_PER_TASK -prob_threshold 0.7 -plotmarker -markerset 40 -verbose |tee -a binning_analysis.log
-
-
-
-conda deactivate
-conda deactivate
-
-
-
-echo "maxbin binning done ..............." | tee -a binning_analysis.log
- 
-
+run_MaxBin.pl -contig metacongo_metaspades_assembly.fsa -out maxbin2_results -reads EPNC_trim_ready_clean_R1.fq.gz \
+                                                                             -reads2 EPNC_trim_ready_clean_R2.fq.gz \
+                                                                              -reads3 EPNC_orphan_ready_clean.fq.gz \
+                                                                              -min_contig_length 200 -thread 10 \
+                                                                              -prob_threshold 0.7 -plotmarker -markerset 40  
 
 ```
-REF='metacongo_metaspades_assembly.fsa'
-INDEX=$REF"__indexed"
-R1='EPNC_trim_ready_clean_R1.fq.gz'
-R2='EPNC_trim_ready_clean_R2.fq.gz'
-ORPHAN='EPNC_orphan_ready_clean.fq.gz'
-MAPPING_MODE='--very-sensitive-local'
+
 
 
 
