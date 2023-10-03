@@ -9,7 +9,7 @@
 
 
 # Prerequisites
-To reproduce these analyses we need the following tools installed in your local machine (Linux)
+To reproduce these analyses you need the following tools installed in your local machine (Linux)
 (For our side we used : CentOS Linux release 7.5.1804 (Core) Maipo) ....
 
 # Tools and scripts
@@ -50,7 +50,7 @@ To reproduce these analyses we need the following tools installed in your local 
 
 **kaiju databases** 
 
-(Feel free to use recent databases if you want), Newer versions are available from kaiju webserver https://kaiju.binf.ku.dk/server
+Please, feel free to use recent databases if you want , Newer versions are available from kaiju webserver https://kaiju.binf.ku.dk/server
 
 >> Versions Used In the Paper are :
 
