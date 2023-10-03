@@ -915,6 +915,7 @@ run_MaxBin.pl -contig metacongo_metaspades_assembly.fsa -out maxbin2_results -re
 
 ## Clustering assembly 
 
+
 > For this step we want to explore the presence of AMR genes but in all assembly
 
 ```bash
