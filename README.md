@@ -837,12 +837,6 @@ $ mkdir Maxbin2_binning_results  && mv maxbin* Maxbin2_binning_results
 ```
 
 ## Metaspades assembly binning
-REF='metacongo_metaspades_assembly.fsa'
-INDEX=$REF"__indexed"
-R1='EPNC_trim_ready_clean_R1.fq.gz'
-R2='EPNC_trim_ready_clean_R2.fq.gz'
-ORPHAN='EPNC_orphan_ready_clean.fq.gz'
-MAPPING_MODE='--very-sensitive-local'
 
 ```bash
 
