@@ -74,7 +74,7 @@ kaiju_db_rvdb_2022-04-07 (983MB)  available at  https://kaiju-idx.s3.eu-central-
 
 * The technology used is Illumina, in paired end mode (2X150).
 * The data are made available in Sequence Read Archive from NCBI from bioproject : PRJNA1021800
-*  Feel free to use your favorite tools to get these files in local.
+* Feel free to use your favorite tools to get these files in local.
 * If you want to reproduce these analysis, please renames these files according to this manual:
 
 
