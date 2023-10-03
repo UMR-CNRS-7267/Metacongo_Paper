@@ -835,8 +835,74 @@ $ mkdir Maxbin2_binning_results  && mv maxbin* Maxbin2_binning_results
 ```
 
 ## Metaspades assembly binning
+REF='metacongo_metaspades_assembly.fsa'
+INDEX=$REF"__indexed"
+R1='EPNC_trim_ready_clean_R1.fq.gz'
+R2='EPNC_trim_ready_clean_R2.fq.gz'
+ORPHAN='EPNC_orphan_ready_clean.fq.gz'
+MAPPING_MODE='--very-sensitive-local'
 
-pwd in volcano here /home/bmoumen/Ascel/METAGENOMICS_CONGO/8.BINNING/8.2.METASPADES_ASSEMB_BIN
+```bash
+
+# Index the ref
+
+$ bowtie2-build --large-index -f metacongo_metaspades_assembly.fsa  metacongo_metaspades_assembly.fsa__indexed --threads 10
+
+# Map reads against assembly
+
+$ bowtie2 -p 10 --very-sensitive-local   -x metacongo_metaspades_assembly.fsa__indexed -1 EPNC_trim_ready_clean_R1.fq.gz \
+                                                                                     -2 EPNC_trim_ready_clean_R2.fq.gz \
+                                                                                     -U EPNC_orphan_ready_clean.fq.gz |samtools view -bS - > metacongo.bam
+#  Sort mapping file
+$ samtools sort metacongo.bam -o metacongo_sorted.bam
+
+# Index bam file
+$ samtools index metacongo_sorted.bam
+
+# Delete unwanted bam
+rm metacongo.bam
+
+# Get stats from bam file ....
+$ bamtools stats -in metacongo_sorted.bam >mapping.stats
+
+# start binning contigs using metabat2
+
+$ runMetaBat.sh -m 1500 -t 10  $REF  metacongo_sorted.bam |tee -a  binning_analysis.log
+
+
+$ mkdir Metabat2_binning_results && mv metacongo_metaspades_assembly.fsa.depth.txt \
+        metacongo_metaspades_assembly.fsa.paired.txt *bt2l \
+        metacongo_sorted.bam metacongo_sorted.bam.bai \
+        mapping.stats metacongo_metaspades_assembly.fsa.metabat-bins20  Metabat2_binning_results
+
+
+
+
+# Start binning using maxbin2 ...........
+
+run_MaxBin.pl -contig $REF -out maxbin2_results -reads $R1  -reads2 $R2   -reads3 $ORPHAN  -min_contig_length 200 -thread $SL
+URM_CPUS_PER_TASK -prob_threshold 0.7 -plotmarker -markerset 40 -verbose |tee -a binning_analysis.log
+
+
+
+conda deactivate
+conda deactivate
+
+
+
+echo "maxbin binning done ..............." | tee -a binning_analysis.log
+ 
+
+
+```
+REF='metacongo_metaspades_assembly.fsa'
+INDEX=$REF"__indexed"
+R1='EPNC_trim_ready_clean_R1.fq.gz'
+R2='EPNC_trim_ready_clean_R2.fq.gz'
+ORPHAN='EPNC_orphan_ready_clean.fq.gz'
+MAPPING_MODE='--very-sensitive-local'
+
+
 
 # Bins refinement 
 
