@@ -19,31 +19,39 @@ To reproduce these analyses you need the following tools installed in your local
 
 **FastQC** available at https://github.com/s-andrews/FastQC (Version used 0.11.8)
 
-**fastp**  available at https://github.com/OpenGene/fastp    (Version used 0.21.0)
+**fastp**  available at https://github.com/OpenGene/fastp    (Version used 0.23.0)
 
-**Bowtie 2** available at https://github.com/BenLangmead/bowtie2 (Version used  XXXX)
+**Bowtie 2** available at https://github.com/BenLangmead/bowtie2 (Version used  2.3.4.3)
 
-**Kaiju** available at https://github.com/bioinformatics-centre/kaiju (Version used  XXXX)
+**Kaiju** available at https://github.com/bioinformatics-centre/kaiju (Version used  v1.9.0)
 
-**Kraken 2** available at https://github.com/DerrickWood/kraken2 (Version used  XXXX)
+**Kraken2** available at https://github.com/DerrickWood/kraken2 (Version used  2.1.2)
 
-**KronaTools** available at https://github.com/marbl/Krona (Version used  XXXX)
+**KronaTools** available at https://github.com/marbl/Krona (Version used  v 2.8.1)
 
-**seqtk** available at https://github.com/lh3/seqtk (Vresion XXX)
+**seqtk** available at https://github.com/lh3/seqtk (Vresion v 1.3-r106)
 
-**seqkit** available at https://github.com/shenwei356/seqkit/ (Version XXX)
+**seqkit** available at https://github.com/shenwei356/seqkit/ (Version used v2.5.1 )
 
 **Samtools** available at https://github.com/samtools/samtools (Version used v1.9)
 
 **bamtools** available at https://github.com/pezmaster31/bamtools (Version used 2.5.1)
 
-**Megahit** available at  https://github.com/voutcn/megahit (Version used  XXXX)
+**Megahit** available at  https://github.com/voutcn/megahit (Version used  1.2.9)
 
-**metaSPAdes** available at https://github.com/ablab/spades (Version used  XXXX)
+**metaSPAdes** available at https://github.com/ablab/spades (Version used  3.15.2)
 
 >some modules from MetaWRAP  Pipleine (but you have to install the whole pipeline if you want to use this ....)
 
-**MetaWRAP** availbale  at https://github.com/bxlab/metaWRAP  (Version used  XXXX)
+**MetaWRAP** availbale  at https://github.com/bxlab/metaWRAP  (Version used  v1.1.2)
+
+**gtdb** available at https://github.com/Ecogenomics/GTDBTk (version used 1.4.1)
+
+**MMseqs2** available at https://github.com/soedinglab/MMseqs2 (Version used release 14-7e284) 
+
+**metabat2** available at 2.12.1 
+
+**Maxbin2**  available at 2.2.7
 
 
 # Databases 
@@ -69,6 +77,9 @@ kaiju_db_rvdb_2022-04-07 (983MB)  available at  https://kaiju-idx.s3.eu-central-
 The Version used in this study is (PlusPF) which means Standard plus Refeq protozoa & fungi available at https://benlangmead.github.io/aws-indexes/k2,
 we used March 14, 2023 version but feel free to use recent version if availbale ...
 
+**Human genome reference index for bowtie2  decontamination**
+
+The index used is available here : https://benlangmead.github.io/aws-indexes/bowtie
 
 
 
