@@ -39,10 +39,6 @@ To reproduce these analyses you need the following tools installed in your local
 
 **Megahit** available at  https://github.com/voutcn/megahit (Version used  1.2.9)
 
-**metaSPAdes** available at https://github.com/ablab/spades (Version used  3.15.2)
-
->some modules from MetaWRAP  Pipleine (but you have to install the whole pipeline if you want to use this ....)
-
 **MetaWRAP** availbale  at https://github.com/bxlab/metaWRAP  (Version used  v1.1.2)
 
 **gtdb** available at https://github.com/Ecogenomics/GTDBTk (version used 1.4.1)
@@ -52,6 +48,10 @@ To reproduce these analyses you need the following tools installed in your local
 **metabat2** available at 2.12.1 
 
 **Maxbin2**  available at 2.2.7
+
+>some modules from MetaWRAP  Pipleine (but you have to install the whole pipeline if you want to use this ....)
+
+**metaSPAdes** available at https://github.com/ablab/spades (Version used  3.15.2)
 
 
 # Databases 
