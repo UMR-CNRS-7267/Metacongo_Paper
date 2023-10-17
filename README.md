@@ -66,6 +66,10 @@ kaiju_db_rvdb_2022-04-07 (983MB)  available at  https://kaiju-idx.s3.eu-central-
 
 **kraken2 databases**
 
+The Version used in this study is (PlusPF) which means Standard plus Refeq protozoa & fungi available at https://benlangmead.github.io/aws-indexes/k2,
+we used March 14, 2023 version but feel free to use recent version if availbale ...
+
+
 
 
 
