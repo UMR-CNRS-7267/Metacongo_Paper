@@ -81,9 +81,7 @@ we used March 14, 2023 version but feel free to use recent version if availbale 
 
 The index used is available here : https://benlangmead.github.io/aws-indexes/bowtie
 
-
-
-
+#############################################################################################################################################################
 
 # Getting the raw data 
 
