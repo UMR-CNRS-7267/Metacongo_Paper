@@ -914,7 +914,7 @@ The refinement was done on each assembly-bin
 $ source ~/miniconda2/bin/activate
 $ conda activate metawrap-env
 
-$ metawrap  bin_refinement -o MEGAHIT_ASSEMB_REFINED -A 8.1.MEGAHIT_ASSEM_BIN/Maxbin2_binning_results -B 8.1.MEGAHIT_ASSEM_BIN/Metabat2_binning_results/ metacong_megahit_assembly.fsa.metabat-bins32
+$ metawrap  bin_refinement -o MEGAHIT_ASSEMB_REFINED -A MEGAHIT_ASSEM_BIN/Maxbin2_binning_results -B MEGAHIT_ASSEM_BIN/Metabat2_binning_results/ metacong_megahit_assembly.fsa.metabat-bins32
 
 
 ```
@@ -926,7 +926,7 @@ $ metawrap  bin_refinement -o MEGAHIT_ASSEMB_REFINED -A 8.1.MEGAHIT_ASSEM_BIN/Ma
 $ source ~/miniconda2/bin/activate
 $ conda activate metawrap-env
 
-$ metawrap  bin_refinement -o METASPADES_ASSEMB_REFINED/ -A 8.2.METASPADES_ASSEMB_BIN/Maxbin2_binning_results -B 8.2.METASPADES_ASSEMB_BIN/Metabat2_binning_results/metacongo_metaspades_assembly.fsa.metabat-bins20/
+$ metawrap  bin_refinement -o METASPADES_ASSEMB_REFINED/ -A METASPADES_ASSEMB_BIN/Maxbin2_binning_results -B METASPADES_ASSEMB_BIN/Metabat2_binning_results/metacongo_metaspades_assembly.fsa.metabat-bins20/
 
 ```
 
@@ -998,7 +998,7 @@ metaWRAP annotate_bins -o FUNCT_ANNOT -t 40 -b MERGED_REFINED_RENAMED
 
 # Bins Taxonomy using GTDB Database
 
-GENOME_DIR='../8.3.MTAWRAP_FROM_THEBEAST/8.3.5.MERGED_REINED_RENAMED/'
+GENOME_DIR='MERGED_REINED_RENAMED/'
 OUTDIR='GTDB_TAX'
 
 EXTENSION='fa'
