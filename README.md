@@ -1088,6 +1088,10 @@ abricate --summary  Abricate_ouput.tab> Abricate_ouput_summary.tab
 # SUPPLEMENTARY COMMENTS
 
 
+Please if you use this protocol in your analyses, please cite the paper :....
+
+How to cite: {the analysis of our data were done as described in XXX et al,}
+
 
 
 
