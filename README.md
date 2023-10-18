@@ -709,7 +709,7 @@ $ kraken2  --db home/databases/kraken2_bracken_ref_seq/standard_plus_PF/ \
             --gzip-compressed --threads 10 \
             --classified_from_orphan.fq  unclassified_from_orphan.fq
 
-# zipp fq files
+# zip  fastq (fq) files
 
 gzip *fq
 
