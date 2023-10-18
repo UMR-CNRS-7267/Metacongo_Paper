@@ -114,11 +114,14 @@ EPNC_R1.fq.gz  84886827
 EPNC_R2.fq.gz  84886827
 
 ``` 
+
 # Raw data QC (Using fastqc)
 
  ```bash
-$ pwd
-/home/user_name/RAW_DATA
+
+/workspaces/Metacongo_Paper/QC_RAW_DATA (main) $ pwd
+/workspaces/Metacongo_Paper/QC_RAW_DATA
+
 
 # Call fastqc program on your fastq files
 # In standard Linux (Pc or simple server)
