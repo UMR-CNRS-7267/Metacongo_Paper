@@ -115,6 +115,7 @@ EPNC_R2.fq.gz  84886827
 
 ``` 
 # Raw data QC (Using fastqc)
+
  ```bash
 $ pwd
 /home/user_name/RAW_DATA
