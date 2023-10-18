@@ -948,24 +948,45 @@ cp the two folders (files of mghit_bin.XX.fa   && mtspades_bin.XX.fa) in one fol
 
 
 # Bins Quantification
-metawrap quant_bins use only F and R or 1 and 2, so we extrcated each pair from orphan and appended
-to each file
+
+Metawrap quant_bins use only F and R or 1 and 2 files for reads, so we extrcated each pair from orphan and appended
+to each file (1 or 2)
+
+```
+# Extract reads from orphan files ... and save them according to pairing info ..
+
 cat EPNC_orphan_ready_clean.fastq|paste - - - -  |awk '$2~ /1:N/ {print $1,$2"\n"$3"\n"$4"\n"$5}' >1.fq
 cat EPNC_orphan_ready_clean.fastq|paste - - - -  |awk '$2~ /2:N/ {print $1,$2"\n"$3"\n"$4"\n"$5}' >2.fq
 
+# Concatenate files ...
 
 cat EPNC_trim_ready_clean_1.fastq 1.fq> test_1.fastq 
 cat EPNC_trim_ready_clean_2.fastq 2.fq> test_2.fastq
 
-# remove unwanted files
+# Finally remove unwanted files ....... and rename 
+
 rm 1.fq 2.fq EPNC_orphan_ready_clean.fastq EPNC_trim_ready_clean_1.fastq EPNC_trim_ready_clean_2.fastq
 
+# Rename ........
 mv test_1.fastq All_EPNC_trim_ready_clean_1.fastq
 mv test_2.fastq All_EPNC_trim_ready_clean_2.fastq
 
+```
+>> Then we quantify bins by the module quant_bins from  metawrap pipeline ...
+
+
+```bash
+
 metawrap quant_bins  -b MERGED_REFINED_RENAMED -o QUANT_MERGED_REFINED_RENAMED All_EPNC_trim_ready_clean_1.fastq All_EPNC_trim_ready_clean_2.fastq
 
+
+```
+
+
+
+
 # BLOBOLOGY
+
 metawrap blobology -a QUANT_MERGED_REFINED_RENAMED/assembly.fa -o BLOBOLOGY --bins MERGED_REFINED_RENAMED/ All_EPNC_trim_ready_clean_1.fastq All_EPNC_trim_ready_clean_2.fastq
 
 # Bin Classification
@@ -1045,6 +1066,7 @@ abricate --summary  Abricate_ouput.tab> Abricate_ouput_summary.tab
 ```
  
 
+# SUPPLEMENTARY COMMENTS
 
 
 
