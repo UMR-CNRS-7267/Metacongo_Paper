@@ -1087,7 +1087,7 @@ abricate --summary  Abricate_ouput.tab> Abricate_ouput_summary.tab
 
 # SUPPLEMENTARY COMMENTS
 
-Most the folders in this repository, contain fake files to simulate reel file names, and  help to reproduce these analyses ...
+
 
 
 
