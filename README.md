@@ -1020,7 +1020,7 @@ OUTDIR='GTDB_TAX'
 EXTENSION='fa'
 
 
-#Get conda ENV
+# Get conda ENV
 
 source  /home/bioinf/apps/anaconda3/bin/activate
 
