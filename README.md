@@ -1024,7 +1024,7 @@ EXTENSION='fa'
 
 source  /home/bioinf/apps/anaconda3/bin/activate
 
-#Activate gtdb
+# Activate gtdb
 
 conda activate gtdbtk
 
@@ -1034,9 +1034,8 @@ gtdbtk classify_wf --genome_dir $GENOME_DIR  --out_dir $OUTDIR --extension $EXTE
 ## Clustering assembly 
 
 
-> For this step we want to explore the presence of AMR genes but in all assembly
+For this step we want to explore the presence of AMR genes but in all assembly
 
-``` bash
 
 $ mkdir WHOLE_ASSEMBLY && cd WHOLE_ASSEMBLY
 
@@ -1045,7 +1044,7 @@ $ mkdir WHOLE_ASSEMBLY && cd WHOLE_ASSEMBLY
 $ ln -s ../../ASSEMBLY/MEGAHIT_ASSEMBLY/metacongo_final_assembly/final.contigs.fa
 $ ln -s ../../ASSEMBLY/METASPADES_ASSEMBLY/metaspades_final_assembly_results/contigs.fasta
 
-#Renamed assemblies file for good tracking
+# Renamed assemblies file for good tracking
 
 $ mv final.contigs.fa megahit_assembly.fa && mv contigs.fasta metaspades_assembly.fa
 
