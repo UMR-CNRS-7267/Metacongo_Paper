@@ -45,9 +45,10 @@ To reproduce these analyses you need the following tools installed in your local
 
 **MMseqs2** available at https://github.com/soedinglab/MMseqs2 (Version used release 14-7e284) 
 
-**metabat2** available at 2.12.1 
+**metabat2** available at https://bitbucket.org/berkeleylab/metabat/src/master/ (Version used 2.12.1)
 
-**Maxbin2**  available at 2.2.7
+**Maxbin2**  available at https://sourceforge.net/projects/maxbin2/  (Version used2.2.7)
+
 
 >some modules from MetaWRAP  Pipleine (but you have to install the whole pipeline if you want to use this ....)
 
