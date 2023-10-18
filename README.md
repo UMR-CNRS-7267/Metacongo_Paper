@@ -988,15 +988,31 @@ metawrap quant_bins  -b MERGED_REFINED_RENAMED -o QUANT_MERGED_REFINED_RENAMED A
 
 # BLOBOLOGY
 
-metawrap blobology -a QUANT_MERGED_REFINED_RENAMED/assembly.fa -o BLOBOLOGY --bins MERGED_REFINED_RENAMED/ All_EPNC_trim_ready_clean_1.fastq All_EPNC_trim_ready_clean_2.fastq
+```bash
 
-# Bin Classification
+$ metawrap blobology -a QUANT_MERGED_REFINED_RENAMED/assembly.fa -o BLOBOLOGY --bins MERGED_REFINED_RENAMED/ All_EPNC_trim_ready_clean_1.fastq All_EPNC_trim_ready_clean_2.fastq
 
-#metawrap classify_bins -b MERGED_REFINED_RENAMED -o CLASSIFY_BIN -t 40
+```
 
-metaWRAP annotate_bins -o FUNCT_ANNOT -t 40 -b MERGED_REFINED_RENAMED
+
+
+# Bin Classification and annotation
+
+```bash
+
+$ metawrap classify_bins -b MERGED_REFINED_RENAMED -o CLASSIFY_BIN -t 40 
+
+
+$ metaWRAP annotate_bins -o FUNCT_ANNOT -t 40 -b MERGED_REFINED_RENAMED
+
+```
+
 
 # Bins Taxonomy using GTDB Database
+
+
+```bash
+
 
 GENOME_DIR='MERGED_REINED_RENAMED/'
 OUTDIR='GTDB_TAX'
@@ -1020,7 +1036,7 @@ gtdbtk classify_wf --genome_dir $GENOME_DIR  --out_dir $OUTDIR --extension $EXTE
 
 > For this step we want to explore the presence of AMR genes but in all assembly
 
-```bash
+``` bash
 
 $ mkdir WHOLE_ASSEMBLY && cd WHOLE_ASSEMBLY
 
