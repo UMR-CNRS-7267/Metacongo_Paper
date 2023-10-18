@@ -535,7 +535,7 @@ $ for i in phylum class order family genus species; do kaiju2table  \
 
 ```
 
->  ################# Using RVDB Plasmid databse ##################################
+>  ################################## Using RVDB Plasmid databse ##################################
 
 Using PL (for plasmids) DATABASE
 
@@ -638,7 +638,7 @@ $ for i in phylum class order family genus species; do kaiju2table -t /kaiju_db/
 
 
 
-# All runs finsihed   ..... 
+# All runs finished   ..... 
 
 ```
 
@@ -666,9 +666,10 @@ seqtk subseq EPNC_orphan_ready_clean.fq.gz  Unclassified_from_PL.list | gzip   >
 
 
 
-# #################################################################
+
 
 ```
+#################################################################
 
 ## kraken2 Profiling
 
