@@ -405,7 +405,7 @@ $ cat  Metacongo_kaiju__PE_NR_EUK.out Metacongo_kaiju__SE_NR_EUK.out > Metacongo
 
 $ kaiju-addTaxonNames -p  -t /kaiju_db/kaiju_db_nr_euk_2022-03-10/nodes.dmp \
                           -n /kaiju_db/kaiju_db_nr_euk_2022-03-10/names.dmp \
-                          -i Metacongo_kaiju__ALL_NR_EUK.out  -o Metacongo_kaiju__ALL_NR_EUK.out_with_name.tsv"
+                          -i Metacongo_kaiju__ALL_NR_EUK.out  -o Metacongo_kaiju__ALL_NR_EUK.out"_with_name.tsv"
 
 
 # Get read count for classified reads (Optional)
