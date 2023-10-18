@@ -945,20 +945,54 @@ form bin.XX.fa to mtspades_bin.XX.fa
 
 ## Renamed Refined Merged
 
+cp the two folders (files of mghit_bin.XX.fa   && mtspades_bin.XX.fa) in one folder
 
-
-
-# BLOBOLOGY
 
 # Bins Quantification
+metawrap quant_bins use only F and R or 1 and 2, so we extrcated each pair from orphan and appended
+to each file
+cat EPNC_orphan_ready_clean.fastq|paste - - - -  |awk '$2~ /1:N/ {print $1,$2"\n"$3"\n"$4"\n"$5}' >1.fq
+cat EPNC_orphan_ready_clean.fastq|paste - - - -  |awk '$2~ /2:N/ {print $1,$2"\n"$3"\n"$4"\n"$5}' >2.fq
 
+
+cat EPNC_trim_ready_clean_1.fastq 1.fq> test_1.fastq 
+cat EPNC_trim_ready_clean_2.fastq 2.fq> test_2.fastq
+
+# remove unwanted files
+rm 1.fq 2.fq EPNC_orphan_ready_clean.fastq EPNC_trim_ready_clean_1.fastq EPNC_trim_ready_clean_2.fastq
+
+mv test_1.fastq All_EPNC_trim_ready_clean_1.fastq
+mv test_2.fastq All_EPNC_trim_ready_clean_2.fastq
+
+metawrap quant_bins  -b MERGED_REFINED_RENAMED -o QUANT_MERGED_REFINED_RENAMED All_EPNC_trim_ready_clean_1.fastq All_EPNC_trim_ready_clean_2.fastq
+
+# BLOBOLOGY
+metawrap blobology -a QUANT_MERGED_REFINED_RENAMED/assembly.fa -o BLOBOLOGY --bins MERGED_REFINED_RENAMED/ All_EPNC_trim_ready_clean_1.fastq All_EPNC_trim_ready_clean_2.fastq
 
 # Bin Classification
 
+#metawrap classify_bins -b MERGED_REFINED_RENAMED -o CLASSIFY_BIN -t 40
+
+metaWRAP annotate_bins -o FUNCT_ANNOT -t 40 -b MERGED_REFINED_RENAMED
+
 # Bins Taxonomy using GTDB Database
 
+GENOME_DIR='../8.3.MTAWRAP_FROM_THEBEAST/8.3.5.MERGED_REINED_RENAMED/'
+OUTDIR='GTDB_TAX'
 
-# AMR identification in the whole assembly (Not in the Binned)
+EXTENSION='fa'
+
+
+#Get conda ENV
+
+source  /home/bioinf/apps/anaconda3/bin/activate
+
+#Activate gtdb
+
+conda activate gtdbtk
+
+gtdbtk classify_wf --genome_dir $GENOME_DIR  --out_dir $OUTDIR --extension $EXTENSION   --cpus $SLURM_CPUS_PER_TASK --pplacer_cpus 1
+
 
 ## Clustering assembly 
 
