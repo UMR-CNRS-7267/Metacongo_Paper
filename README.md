@@ -15,11 +15,11 @@ To reproduce these analyses you need the following tools installed in your local
 # Tools and scripts
 
 
-**bash** available by deafult in all linux distritions (version 4.2.46(2)-release )
+**bash** available by deafult in all linux distritions (version used  4.2.46(2)-release )
 
 **FastQC** available at https://github.com/s-andrews/FastQC (Version used 0.11.8)
 
-**fastp**  available at https://github.com/OpenGene/fastp    (Version used 0.23.0)
+**fastp**  available at https://github.com/OpenGene/fastp (Version used 0.23.0)
 
 **Bowtie 2** available at https://github.com/BenLangmead/bowtie2 (Version used  2.3.4.3)
 
@@ -39,7 +39,7 @@ To reproduce these analyses you need the following tools installed in your local
 
 **Megahit** available at  https://github.com/voutcn/megahit (Version used  1.2.9)
 
-**MetaWRAP** availbale  at https://github.com/bxlab/metaWRAP  (Version used  v1.1.2)
+**MetaWRAP** availbale  at https://github.com/bxlab/metaWRAP (Version used  v1.1.2)
 
 **gtdb** available at https://github.com/Ecogenomics/GTDBTk (version used 1.4.1)
 
@@ -354,7 +354,7 @@ EPNC_orphan_ready_clean.fq.gz   4699049
 EPNC_trim_ready_clean_R1.fq.gz  79712668
 EPNC_trim_ready_clean_R2.fq.gz  79712668
 
-# Run kaiju on the data using databses: kaiju_db_nr_euk_2022-03-10 then the unclassified using this database will be used with 
+# Run kaiju on the data using databases: kaiju_db_nr_euk_2022-03-10 then the unclassified using this database will be used with 
 # kaiju_db_plasmids_2022-04-10 then the unclassfied will be used with kaiju_db_rvdb_2022-04-07 database.
 # If you have a cluster with slurm (see Scripts folder for a script named kaiju_profiling_all_slurm__last.sh) and sbatch kaiju_profiling_all_slurm__last.sh to run it 
 
@@ -904,16 +904,48 @@ run_MaxBin.pl -contig metacongo_metaspades_assembly.fsa -out maxbin2_results -re
 
 # Bins refinement 
 
+For bins refinement we used metawrap (some modules).
+The refinement was done on each assembly-bin
+
 
 ## Megahit Assembly Refined 
 
+```bash
+$ source ~/miniconda2/bin/activate
+$ conda activate metawrap-env
+
+$ metawrap  bin_refinement -o MEGAHIT_ASSEMB_REFINED -A 8.1.MEGAHIT_ASSEM_BIN/Maxbin2_binning_results -B 8.1.MEGAHIT_ASSEM_BIN/Metabat2_binning_results/ metacong_megahit_assembly.fsa.metabat-bins32
+
+
+```
+
+
 ## Metaspades Assembly Refined
+
+```bash
+$ source ~/miniconda2/bin/activate
+$ conda activate metawrap-env
+
+$ metawrap  bin_refinement -o METASPADES_ASSEMB_REFINED/ -A 8.2.METASPADES_ASSEMB_BIN/Maxbin2_binning_results -B 8.2.METASPADES_ASSEMB_BIN/Metabat2_binning_results/metacongo_metaspades_assembly.fsa.metabat-bins20/
+
+```
+
+>> Refining refined == No results ... give an explanations
+
+
 
 ## Megahit Bins Refined renamed
 
+form bin.XX.fa to mghit_bin.XX.fa
+
+
 ## Metaspades Bins Refined Renamed
 
+form bin.XX.fa to mtspades_bin.XX.fa
+
 ## Renamed Refined Merged
+
+
 
 
 # BLOBOLOGY
@@ -954,7 +986,7 @@ $ mkdir Clustered_using_mmseq && cd Clustered_using_mmseq
 
 $ ln -s ../all_assembly.fasta
 
-#Run mmseq2 to clusterize the assembly (remove redundant contigs)
+# Run mmseq2 to clusterize the assembly (remove redundant contigs)
 $ mmseqs easy-cluster all_assembly.fasta clusterRes tmp --min-seq-id 0.8 -c 0.8 --cov-mode 1
 $ ll 
 clusterRes_all_seqs.fasta
