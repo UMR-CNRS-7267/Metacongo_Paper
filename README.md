@@ -243,7 +243,7 @@ $ unzip GRCh38_noalt_as.zip
 $ mv GRCh38_noalt_as/GRCh38_noalt_as.* .
 $ rm -rf GRCh38_noalt_as GRCh38_noalt_as.zip
 $ cd ../
-#Symlink fastq files
+# Symlink fastq files
 $ for i in ../QC_FILTERED_DATA/*gz; do ln -s $i ; done
 $ ll
 drwxr-xr-x 2 foo users 216 Nov 21 10:48 6.1.REF
