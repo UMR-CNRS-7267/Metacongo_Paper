@@ -658,18 +658,9 @@ $ grep -w 'U' Metacongo_kaiju__ALL_PL.out  |awk '{print $2}' > Unclassified_from
 
 echo "Extracting Unclassified reads from original fastq" |tee -a analysis.log
 
-
-
 seqtk subseq EPNC_trim_ready_clean_R1.fq.gz  Unclassified_from_PL.list  | gzip > R1_to_kraken2.fq.gz
 seqtk subseq EPNC_trim_ready_clean_R1.fq.gz  Unclassified_from_PL.list  | gzip > R2_to_kraken2.fq.gz
 seqtk subseq EPNC_orphan_ready_clean.fq.gz  Unclassified_from_PL.list | gzip   > orphan_to_kraken2.fq.gz
-
-
-
-
-
-
-
 
 ```
 #################################################################
@@ -809,8 +800,6 @@ $ ln -s   ../../ASSEMBLY/MEGAHIT_ASSEMBLY/metacongo_final_assembly/final.contigs
 # Symlink assembly
 $ mv final.contigs.fa metacong_megahit_assembly.fsa
 
-
-
 # Reference ... assembly file  Indexing ...............
 
 $ bowtie2-build -f metacong_megahit_assembly.fsa  metacong_megahit_assembly.fsa__indexed --threads 10
@@ -832,8 +821,6 @@ $ rm metacongo.bam
 # Generating stats from the  mapping ..............
 
 bamtools stats -in metacongo_sorted.bam >mapping.stats
-
-
 
 # Start binning contigs using metabat2
 
@@ -983,11 +970,7 @@ mv test_2.fastq All_EPNC_trim_ready_clean_2.fastq
 
 metawrap quant_bins  -b MERGED_REFINED_RENAMED -o QUANT_MERGED_REFINED_RENAMED All_EPNC_trim_ready_clean_1.fastq All_EPNC_trim_ready_clean_2.fastq
 
-
 ```
-
-
-
 
 # BLOBOLOGY
 
