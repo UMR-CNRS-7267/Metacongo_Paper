@@ -903,14 +903,13 @@ run_MaxBin.pl -contig metacongo_metaspades_assembly.fsa -out maxbin2_results -re
 
 
 # Bins refinement 
-
 For bins refinement we used metawrap (some modules).
 The refinement was done on each assembly-bin
-
 
 ## Megahit Assembly Refined 
 
 ```bash
+# Set the env for metawrap 
 $ source ~/miniconda2/bin/activate
 $ conda activate metawrap-env
 
