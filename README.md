@@ -906,9 +906,7 @@ $ conda activate metawrap-env
 
 $ metawrap  bin_refinement -o MEGAHIT_ASSEMB_REFINED -A MEGAHIT_ASSEM_BIN/Maxbin2_binning_results -B MEGAHIT_ASSEM_BIN/Metabat2_binning_results/ metacong_megahit_assembly.fsa.metabat-bins32
 
-
 ```
-
 
 ## Metaspades Assembly Refined
 
