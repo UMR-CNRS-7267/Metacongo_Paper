@@ -918,17 +918,20 @@ $ metawrap  bin_refinement -o METASPADES_ASSEMB_REFINED/ -A METASPADES_ASSEMB_BI
 
 ```
 
->> Refining refined == No results ... give an explanations
+>> Please Note, we did the assembly with two assemblers, and the binning with two binner, and then refine bins.
 
 
 
 ## Megahit Bins Refined renamed
 
-form bin.XX.fa to mghit_bin.XX.fa
+To track the assemblers (as info) in the assembly results (contigs), we renamed files as following :
+
+> form bin.XX.fa to mghit_bin.XX.fa
 
 
 ## Metaspades Bins Refined Renamed
 
+As previous renaming  and to track the assemblers (as info) in the assembly results (contigs), we renamed files as following :
 form bin.XX.fa to mtspades_bin.XX.fa
 
 ## Renamed Refined Merged
