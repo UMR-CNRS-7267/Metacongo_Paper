@@ -4,18 +4,18 @@
 
 
 
- **_The repository contains descriptions of the tools and methods used to analyze metagenomic data from surface water sampled from the city of Pointe-Noire, Congo. These analyses were published in this paper :_**
+ **_The repository contains descriptions of the tools and methods used to analyze metagenomic data from surface water sampled from the city of Pointe-Noire, Congo. These analyses were published in this paper:_**
 
 
 
 # Prerequisites
 To reproduce these analyses you need the following tools installed in your local machine (Linux)
-(For our side we used : CentOS Linux release 7.5.1804 (Core) Maipo) ....
+(For our side we used: CentOS Linux release 7.5.1804 (Core) Maipo) ....
 
 # Tools and scripts
 
 
-**bash** available by deafult in all linux distritions (version used  4.2.46(2)-release )
+**bash** available by default in all Linux distortions (version used  4.2.46(2)-release )
 
 **FastQC** available at https://github.com/s-andrews/FastQC (Version used 0.11.8)
 
@@ -59,7 +59,7 @@ To reproduce these analyses you need the following tools installed in your local
 
 **kaiju databases** 
 
-Please, feel free to use recent databases if you want , Newer versions are available from kaiju webserver https://kaiju.binf.ku.dk/server
+Please, feel free to use recent databases if you want, Newer versions are available from the kaiju webserver https://kaiju.binf.ku.dk/server
 
 >> Versions Used In the Paper are :
 
@@ -70,26 +70,26 @@ kaiju_db_plasmids_2022-04-10 (966MB) available at https://kaiju-idx.s3.eu-centra
 kaiju_db_rvdb_2022-04-07 (983MB)  available at  https://kaiju-idx.s3.eu-central-1.amazonaws.com/2022/kaiju_db_rvdb_2022-04-07.tgz
 
 
->> NB: for Kaiju databses we need 3 files for each db: database.fmi, nodes.dmp and names.dmp
+>> NB: for the Kaiju database we need 3 files for each db: database.fmi, nodes.dmp and names.dmp
 
 
 **kraken2 databases**
 
 The Version used in this study is (PlusPF) which means Standard plus Refeq protozoa & fungi available at https://benlangmead.github.io/aws-indexes/k2,
-we used March 14, 2023 version but feel free to use recent version if availbale ...
+we used the March 14, 2023 version but feel free to use the recent version if available...
 
 **Human genome reference index for bowtie2  decontamination**
 
-The index used is available here : https://benlangmead.github.io/aws-indexes/bowtie
+The index used is available here: https://benlangmead.github.io/aws-indexes/bowtie
 
 #############################################################################################################################################################
 
 # Getting the raw data 
 
-* The technology used is Illumina, in paired end mode (2X150).
-* The data are made available in Sequence Read Archive from NCBI from bioproject : PRJNA1021800
-* Feel free to use your favorite tools to get these files in local.
-* If you want to reproduce these analysis, please renames these files according to this manual:
+* The technology used is Illumina, in paired-end mode (2X150).
+* The data are made available in Sequence Read Archive from NCBI from bioproject: PRJNA1021800
+* Feel free to use your favorite tools to get these files  locally.
+* If you want to reproduce these analyses, please rename these files according to this manual:
 
 
 ```bash
@@ -134,9 +134,9 @@ $ fastqc *gz -t X # when X is the number of threads you want to use
 
 # Trimming and filtering
 
-As mentionned in materiel & methods section of the paper, we used fastp to trim and filter the raw reads.
+As mentioned in the materiel & methods section of the paper, we used fastp to trim and filter the raw reads.
 
-Here the script used for that purpose:
+Here is the script used for that purpose:
 
 ```bash
 # Create a folder to hold the filtered data
@@ -148,7 +148,7 @@ $ ll
 lrwxrwxrwx 1 foo users         33 Jun 20 14:03 EPNC_R1.fq.gz -> ../RAW_DATA/EPNC_R1.fq.gz
 lrwxrwxrwx 1 foo users         33 Jun 20 14:03 EPNC_R2.fq.gz -> ../RAW_DATA/EPNC_R2.fq.gz
 ``` 
-For removing adaptors and filter by quality, please see metacongo_fastp_slurm.sh in Script folder
+For removing adaptors and filter by quality, please see metacongo_fastp_slurm.sh in the Script folder
 
 The slurm script used, with this --adapter_sequence AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --adapter_sequence_r2 AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT
 
@@ -235,11 +235,11 @@ $ fastqc *gz -t X # when X is the number of threads you want to use
 $ mkdir HUMAN_CONTA_REMOVAL && cd HUMAN_CONTA_REMOVAL
 $ mkdir REF && cd REF
 
-#Bowtie  index was downnloaded from here
+#Bowtie  index was downloaded from here
 https://genome-idx.s3.amazonaws.com/bt/GRCh38_noalt_as.zip
 
 $ wget https://genome-idx.s3.amazonaws.com/bt/GRCh38_noalt_as.zip
-#Extact and delete unwatned folders, files
+#Extact and delete unwanted folders, files
 $ unzip GRCh38_noalt_as.zip
 $ mv GRCh38_noalt_as/GRCh38_noalt_as.* .
 $ rm -rf GRCh38_noalt_as GRCh38_noalt_as.zip
@@ -283,7 +283,7 @@ UNMAPPED_LIST='Unmapped.list'
 
 
 
-# Run bowtie2 to map reads to human genome index
+# Run bowtie2 to map reads to the human genome index
 
 $ bowtie2 --very-sensitive-local -x REF/GRCh38_noalt_as -1 EPNC_trim_R1.fq.gz  -2 EPNC_trim_R2.fq.gz -U EPNC_orphan.fq.gz -S Read_vs_human.sam -p 4
 
@@ -303,7 +303,7 @@ $ bamtools stats -in Read_vs_human_sorted.bam >mapping_stat_from_whole_bam.stats
 
 $ samtools view -b -f 4 Read_vs_human_sorted.bam > Unmapped.bam
 
-# This line produce the unmapped list BUT with duplication
+# This line produces the unmapped list BUT with duplication
 # Have to remove duplicated reads at the end using seqkit
 
 $ samtools view  Unmapped.bam  |awk '{print $1}' > Unmapped.list
@@ -327,15 +327,15 @@ mv EPNC_trim_ready_R1.fq.gz EPNC_trim_ready_R2.fq.gz EPNC_orphan_ready.fq.gz REA
 ```
 
 
->> At this step data are ready to analyse, we will profile the metagenomic  read using two profiler (Kaiju and Kraken2).
+>> At this step data are ready to analyze, and we will profile the metagenomic  read using two profilers (Kaiju and Kraken2).
 
->> kaiju use amino acid database, so there is six-frames translation of our reads then compare to proteins DB
+>> kaiju uses amino acid database, so there is six-frame translation of our reads then compared to proteins DB
 
->> kraken2 use  nucleotide database. 
+>> kraken2 uses  nucleotide database. 
 
->> All reads those are not assigned/classified by kaiju were passed to kraken2
+>> All reads that are not assigned/classified by kaiju were passed to kraken2
 
->> ***This step  needs databases so be sur to have enough place in your local server ...***
+>> ***This step  needs databases so be sure to have enough space in your local server ...***
 
 # PROFILING 
 
@@ -358,7 +358,7 @@ EPNC_trim_ready_clean_R1.fq.gz  79712668
 EPNC_trim_ready_clean_R2.fq.gz  79712668
 
 # Run kaiju on the data using databases: kaiju_db_nr_euk_2022-03-10 then the unclassified using this database will be used with 
-# kaiju_db_plasmids_2022-04-10 then the unclassfied will be used with kaiju_db_rvdb_2022-04-07 database.
+# kaiju_db_plasmids_2022-04-10 then the unclassified will be used with kaiju_db_rvdb_2022-04-07 database.
 # If you have a cluster with slurm (see Scripts folder for a script named kaiju_profiling_all_slurm__last.sh) and sbatch kaiju_profiling_all_slurm__last.sh to run it 
 
 ```
@@ -446,7 +446,7 @@ $ for i in phylum class order family genus species; do kaiju2table \
 > we are going to extract the unclassified reads from the output and re_run on Virus db
 
 
-#Names after First run for  RVBD classification
+#Names after the First run for  RVBD classification
 F_Unc_from_nr_euk='F_Unc_for_rvbd.fq.gz'
 R_Unc_from_nr_euk='R_Unc_for_rvbd.fq.gz'
 O_Unc_from_nr_euk='O_Unc_for_rvbd.fq.gz'
@@ -475,9 +475,9 @@ $ seqtk subseq  EPNC_trim_ready_clean_R1.fq.gz  Unclassified_from_nr_euk.list  |
 $ seqtk subseq  REPNC_trim_ready_clean_R2.fq.gz  Unclassified_from_nr_euk.list  | gzip > $R_Unc_for_rvbd.fq.gz
 $ seqtk subseq  EPNC_orphan_ready_clean.fq.gz  Unclassified_from_nr_euk.list | gzip > O_Unc_for_rvbd.fq.gz
 
-# Files are ready for second round of profiling 
+# Files are ready for the second round of profiling 
 
-# Running   kaiju-multi on paired end reads .....
+# Running   kaiju-multi on paired-end reads .....
 
 $ kaiju-multi -z 2 -E 0.01 -t /kaiju_db/kaiju_db_rvdb_2022-04-07/nodes.dmp \
                          -f /kaiju_db/kaiju_db_rvdb_2022-04-07/kaiju_db_rvdb.fmi \
@@ -538,11 +538,11 @@ $ for i in phylum class order family genus species; do kaiju2table  \
 
 ```
 
->  ################################## Using RVDB Plasmid databse ##################################
+>  ################################## Using RVDB Plasmid database ##################################
 
 Using PL (for plasmids) DATABASE
 
-Going to extract the unclassified reads from  previous analysis output and re_run on Plasmid db
+Going to extract the unclassified reads from  the previous analysis output and re_run on Plasmid db
 
 
 KAIJU_PL_DB='/home/databases/kaiju_db/kaiju_db_plasmids_2022-04-10/kaiju_db_plasmids.fmi'
@@ -550,7 +550,7 @@ KAIJU_PL_NODES='/home/databases/kaiju_db/kaiju_db_plasmids_2022-04-10/nodes.dmp'
 KAIJU_PL_NAMES='/home/databases/kaiju_db/kaiju_db_plasmids_2022-04-10/names.dmp'
 
 
-#Names after First run for PLASMID classification
+#Names after the First run for PLASMID classification
 F_Unc_from_rvbd='F_Unc_for_pl.fq.gz'
 R_Unc_from_rvbd='R_Unc.for_pl.fq.gz'
 O_Unc_from_rvbd='O_Unc.for_pl.fq.gz'
@@ -582,7 +582,7 @@ $ seqtk subseq EPNC_orphan_ready_clean.fq.gz  Unclassified_from_rvbd.list | gzip
 
 # Files ready for second round using rvdb..........
 
-echo "1:Runing  kaiju-multi on paired end reads ..." 
+echo "1:Runing  kaiju-multi on paired-end reads ..." 
 
 $ kaiju-multi -z 4 -E 0.01 -t /kaiju_db/kaiju_db_plasmids_2022-04-10/nodes.dmp \
                          -f /kaiju_db/kaiju_db_plasmids_2022-04-10/kaiju_db_plasmids.fmi \
@@ -617,7 +617,7 @@ $ echo "TOTAL REDS  COUNT: " $(wc -l  $Metacongo_kaiju__ALL_PL.out |awk '{print 
 $ echo "READ CLASSIFIED COUNT: " $(grep -w -c "C" $Metacongo_kaiju__ALL_PL.out ) 
 
 
-# Converting to kaiju output to krona file
+# Converting to kaiju output to Krona file
 
 $ kaiju2krona  -t /kaiju_db/kaiju_db_plasmids_2022-04-10/nodes.dmp \
              -n  /home/databases/kaiju_db/kaiju_db_plasmids_2022-04-10/names.dmp \
@@ -625,7 +625,7 @@ $ kaiju2krona  -t /kaiju_db/kaiju_db_plasmids_2022-04-10/nodes.dmp \
 
 
 
-# Creating html from krona file...
+# Creating html from Krona file...
 
 $ ktImportText -o Metacongo_kaiju__ALL_PL.krona.html  Metacongo_kaiju__ALL_PL.krona
 
@@ -645,11 +645,11 @@ $ for i in phylum class order family genus species; do kaiju2table -t /kaiju_db/
 
 ```
 
-> From here all the profiling step was done using kaiju, will get un profiled reads fomr this step then convert them to fastq
-> and profile them by another profiler with is Kraken2
+> From here all the profiling step was done using kaiju, will get unprofiled reads from this step and then convert them to fastq
+> and profile them by another profiler with Kraken2
 
 ```bash
-# Extracting reads form PL outout
+# Extracting reads from PL output
 
 # Going to extract reads not assigned from PL profiling ...
 
@@ -667,7 +667,7 @@ seqtk subseq EPNC_orphan_ready_clean.fq.gz  Unclassified_from_PL.list | gzip   >
 
 ## kraken2 Profiling
 
-We will use these input for Kraken2
+We will use these inputs for Kraken2
 
 * kraken2_db_path='/home/databases/kraken2_bracken_ref_seq/standard_plus_PF/'
 * R1='R1_to_kraken2.fq.gz'
@@ -728,9 +728,9 @@ $ ktImportText -o orphan_kraken2.KRONA.html orphan_kraken2.KRONA
 
 ```
 
-# Assembly (another approach to analyse the data)
+# Assembly (another approach to analyze the data)
 
-* Here we will assemble the data using two assembler, and bin assemblies using two binning tools. 
+* Here we will assemble the data using two assemblers, and bin assemblies using two binning tools. 
 * Megahit and Metaspades will be used as assemblers
 * Maxbin2 and Metabat2 will be used as binning tools
 
@@ -816,7 +816,7 @@ $ samtools sort metacongo.bam -o metacongo_sorted.bam
 #Indexing ...
 $ samtools index metacongo_sorted.bam
 
-# removing unwanted file  
+# Removing unwanted file  
 $ rm metacongo.bam
 
 # Generating stats from the  mapping ..............
@@ -851,7 +851,7 @@ $ mkdir Maxbin2_binning_results  && mv maxbin* Maxbin2_binning_results
 
 $ bowtie2-build --large-index -f metacongo_metaspades_assembly.fsa  metacongo_metaspades_assembly.fsa__indexed --threads 10
 
-# Map reads against assembly
+# Map reads against the assembly
 
 $ bowtie2 -p 10 --very-sensitive-local   -x metacongo_metaspades_assembly.fsa__indexed -1 EPNC_trim_ready_clean_R1.fq.gz \
                                                                                      -2 EPNC_trim_ready_clean_R2.fq.gz \
@@ -895,7 +895,7 @@ run_MaxBin.pl -contig metacongo_metaspades_assembly.fsa -out maxbin2_results -re
 
 
 # Bins refinement 
-For bins refinement we used metawrap (some modules).
+For bin refinement, we used metawrap (some modules).
 The refinement was done on each assembly-bin
 
 ## Megahit Assembly Refined 
@@ -919,20 +919,20 @@ $ metawrap  bin_refinement -o METASPADES_ASSEMB_REFINED/ -A METASPADES_ASSEMB_BI
 
 ```
 
->> Please Note, we did the assembly with two assemblers, and the binning with two binner, and then refine bins.
+>> Please Note, that we did the assembly with two assemblers, the binning with two binner, and then refine bins.
 
 
 
 ## Megahit Bins Refined renamed
 
-To track the assemblers (as info) in the assembly results (contigs), we renamed files as following :
+To track the assemblers (as info) in the assembly results (contigs), we renamed files as follows:
 
 > form bin.XX.fa to mghit_bin.XX.fa
 
 
 ## Metaspades Bins Refined Renamed
 
-As previous renaming  and to track the assemblers (as info) in the assembly results (contigs), we renamed files as following :
+As previous renaming  and to track the assemblers (as info) in the assembly results (contigs), we renamed files as follows:
 form bin.XX.fa to mtspades_bin.XX.fa
 
 ## Renamed Refined Merged
@@ -942,7 +942,7 @@ cp the two folders (files of mghit_bin.XX.fa   && mtspades_bin.XX.fa) in one fol
 
 # Bins Quantification
 
-Metawrap quant_bins use only F and R or 1 and 2 files for reads, so we extrcated each pair from orphan and appended
+Metawrap quant_bins use only F and R or 1 and 2 files for reads, so we extracted each pair from orphan and appended
 to each file (1 or 2)
 
 ```
@@ -965,7 +965,7 @@ mv test_1.fastq All_EPNC_trim_ready_clean_1.fastq
 mv test_2.fastq All_EPNC_trim_ready_clean_2.fastq
 
 ```
->> Then we quantify bins by the module quant_bins from  metawrap pipeline ...
+>> Then we quantify bins by the module quant_bins from  the metawrap pipeline ...
 
 
 ```bash
@@ -1022,7 +1022,7 @@ gtdbtk classify_wf --genome_dir $GENOME_DIR  --out_dir $OUTDIR --extension $EXTE
 ## Clustering assembly 
 
 
-For this step we want to explore the presence of AMR genes but in all assembly
+For this step, we want to explore the presence of AMR genes in all assembly
 
 
 $ mkdir WHOLE_ASSEMBLY && cd WHOLE_ASSEMBLY
@@ -1075,7 +1075,7 @@ abricate --summary  Abricate_ouput.tab> Abricate_ouput_summary.tab
 
 Please if you use this protocol in your analyses, please cite the paper :....
 
-How to cite: {the analysis of our data were done as described in XXX et al,}
+How to cite: {the analysis of our data was done as described in XXX et al,}
 
 
 
