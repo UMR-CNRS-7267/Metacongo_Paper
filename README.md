@@ -757,6 +757,7 @@ $ megahit -1 EPNC_trim_ready_clean_R1.fq.gz  -2 EPNC_trim_ready_clean_R2.fq.gz -
 ```
 > Bonus (assembly statistics)
 
+Feel free to do some statistics from your assembly ...
 
 ## Metaspades assembly 
 
