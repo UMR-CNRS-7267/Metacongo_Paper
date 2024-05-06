@@ -15,7 +15,7 @@ To reproduce these analyses you need the following tools installed in your local
 # Tools and scripts
 
 
-**bash** available by default in all Linux distortions (version used  4.2.46(2)-release )
+**bash** available by default in all Linux distributions (version used  4.2.46(2)-release )
 
 **FastQC** available at https://github.com/s-andrews/FastQC (Version used 0.11.8)
 
