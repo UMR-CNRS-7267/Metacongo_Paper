@@ -190,7 +190,7 @@ REMOVED READS >>> 169773654-164756559=5017095
 ```
 
 
-Optional but it is always good to see before/after (we will count the adaptors) in files before/after
+Optional: but it is always good to see before/after (we will count the adaptors) in files before/after
 
 ```bash
 $ for i in *gz; do printf $i"\t"; zcat $i |grep -c "AGATCGGAAGAGCACACGTCTGAACTCCAGTCA"; done
@@ -211,7 +211,7 @@ EPNC_trim_R2.fq.gz      3
 
 ```
 
-QC the data again (Optional since fastp has report with before after)
+QC the data again (Optional since fastp has a report with before/after)
 
 ```bash
 $ mkdir QC_FILTERED_DATA && cd QC_FILTERED_DATA
