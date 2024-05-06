@@ -422,7 +422,7 @@ $ kaiju2krona  -t /kaiju_db/kaiju_db_nr_euk_2022-03-10/nodes.dmp \
               -i  Metacongo_kaiju__ALL_NR_EUK.out -o Metacongo_kaiju__ALL_NR_EUK.krona
 
 
-# Creating html from krona file
+# Creating HTML report  from the krona file
 
 $ ktImportText -o Metacongo_kaiju__ALL_NR_EUK.krona.html  Metacongo_kaiju__ALL_NR_EUK.krona
 
