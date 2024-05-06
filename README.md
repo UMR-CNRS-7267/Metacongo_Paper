@@ -148,7 +148,7 @@ $ ll
 lrwxrwxrwx 1 foo users         33 Jun 20 14:03 EPNC_R1.fq.gz -> ../RAW_DATA/EPNC_R1.fq.gz
 lrwxrwxrwx 1 foo users         33 Jun 20 14:03 EPNC_R2.fq.gz -> ../RAW_DATA/EPNC_R2.fq.gz
 ``` 
-For removing adaptors and to filter by quality, please see metacongo_fastp_slurm.sh in the Script folder
+For removing adaptors and filtering by quality, please see metacongo_fastp_slurm.sh in the Script folder
 
 The slurm script used, with this --adapter_sequence AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --adapter_sequence_r2 AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT
 
@@ -163,7 +163,7 @@ How to use fastp if you do not have slurm or HPC
 $ fastp -i EPNC_R1.fq.gz -o EPNC_trim_R1.fq.gz -I EPNC_R2.fq.gz -O EPNC_trim_R2.fq.gz --unpaired1 EPNC_orphan_1.fq.gz --unpaired2 EPNC_orphan_2.fq.gz  -z 4 --trim_poly_g --trim_poly_x --detect_adapter_for_pe -l 50 -c -p -h  metacongo_fastp_report.html--json metacongo_fastp_report.json --overrepresentation_analysis  -w 2   --adapter_sequence AGATCGGAAGAGCACACGTCTGAACTCCAGTCA  --adapter_sequence_r2 AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT
 
 ```
-Doing sanity check to check the output of fastp (get and idea about the filtering process by compting before/after )
+Doing sanity check to check the output of fastp (get and idea about the filtering process by counting before/after )
 
 ```bash
 ############ Before fastp #################
@@ -329,7 +329,7 @@ mv EPNC_trim_ready_R1.fq.gz EPNC_trim_ready_R2.fq.gz EPNC_orphan_ready.fq.gz REA
 
 >> At this step data are ready to analyze, and we will profile the metagenomic  read using two profilers (Kaiju and Kraken2).
 
->> kaiju uses amino acid database, so there is six-frame translation of our reads then compared to proteins DB
+>> kaiju uses amino acid database, so there is a six-frame translation of our reads then compared to proteins DB
 
 >> kraken2 uses  nucleotide database. 
 
