@@ -50,7 +50,7 @@ To reproduce these analyses you need the following tools installed in your local
 **Maxbin2**  available at https://sourceforge.net/projects/maxbin2/  (Version used2.2.7)
 
 
->some modules from MetaWRAP  Pipleine (but you have to install the whole pipeline if you want to use this ....)
+> Some modules from MetaWRAP  Pipeline (but you have to install the whole pipeline if you want to use this ....)
 
 **metaSPAdes** available at https://github.com/ablab/spades (Version used  3.15.2)
 
@@ -134,7 +134,7 @@ $ fastqc *gz -t X # when X is the number of threads you want to use
 
 # Trimming and filtering
 
-As mentioned in the materiel & methods section of the paper, we used fastp to trim and filter the raw reads.
+As mentioned in the material & methods section of the paper, we used fastp to trim and filter the raw reads.
 
 Here is the script used for that purpose:
 
@@ -148,7 +148,7 @@ $ ll
 lrwxrwxrwx 1 foo users         33 Jun 20 14:03 EPNC_R1.fq.gz -> ../RAW_DATA/EPNC_R1.fq.gz
 lrwxrwxrwx 1 foo users         33 Jun 20 14:03 EPNC_R2.fq.gz -> ../RAW_DATA/EPNC_R2.fq.gz
 ``` 
-For removing adaptors and filter by quality, please see metacongo_fastp_slurm.sh in the Script folder
+For removing adaptors and to filter by quality, please see metacongo_fastp_slurm.sh in the Script folder
 
 The slurm script used, with this --adapter_sequence AGATCGGAAGAGCACACGTCTGAACTCCAGTCA --adapter_sequence_r2 AGATCGGAAGAGCGTCGTGTAGGGAAAGAGTGT
 
