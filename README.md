@@ -380,7 +380,7 @@ EPNC_trim_ready_clean_R2.fq.gz  79712668
 # OUTPUT_SE_NR_EUK='Metacongo_kaiju__SE_NR_EUK.out'
 # OUTPUT_ALL_NR_EUK='Metacongo_kaiju__ALL_NR_EUK.out'
 
-# After merging the output of PE and SE have to create krona file
+# After merging the output of PE and SE, we have to create krona file
 # OUTPUT_ALL_NR_EUK_KR='Metacongo_kaiju__ALL_NR_EUK.krona'
 
 
@@ -426,7 +426,7 @@ $ kaiju2krona  -t /kaiju_db/kaiju_db_nr_euk_2022-03-10/nodes.dmp \
 
 $ ktImportText -o Metacongo_kaiju__ALL_NR_EUK.krona.html  Metacongo_kaiju__ALL_NR_EUK.krona
 
-# Creating classification summary for phylum, class, order family, genus and species ...
+# Creating classification summary for phylum, class, order family, genus, and species ...
 # using loop in bash
 
 $ for i in phylum class order family genus species; do kaiju2table \
@@ -443,7 +443,7 @@ $ for i in phylum class order family genus species; do kaiju2table \
 
 >  ################# Using RVDB DATABASE ##################################
 
-> we are going to extract the unclassified reads from the output and re_run on Virus db
+> We are going to extract the unclassified reads from the output and re_run on Virus db
 
 
 #Names after the First run for  RVBD classification
@@ -521,7 +521,7 @@ $ kaiju2krona  -t /kaiju_db/kaiju_db_rvdb_2022-04-07/nodes.dmp \
 
 
 
-# Creating html from krona file ...
+# Creating  an HTML report from the krona file ...
 
 $ ktImportText -o Metacongo_kaiju__ALL_RVDB.krona.html  Metacongo_kaiju__ALL_RVDB.krona
 
@@ -542,7 +542,7 @@ $ for i in phylum class order family genus species; do kaiju2table  \
 
 Using PL (for plasmids) DATABASE
 
-Going to extract the unclassified reads from  the previous analysis output and re_run on Plasmid db
+We are going to extract the unclassified reads from  the previous analysis output and re_run on Plasmid db
 
 
 KAIJU_PL_DB='/home/databases/kaiju_db/kaiju_db_plasmids_2022-04-10/kaiju_db_plasmids.fmi'
@@ -560,7 +560,7 @@ OUTPUT_PE_PL='Metacongo_kaiju__PE_PL.out'
 OUTPUT_SE_PL='Metacongo_kaiju__SE_PL.out'
 OUTPUT_ALL_PL='Metacongo_kaiju__ALL_PL.out'
 
-#After merging the output of PE and SE have to create krona file
+#After merging the output of PE and SE, we have to create the krona file
 OUTPUT_ALL_PL_KR='Metacongo_kaiju__ALL_PL.krona'
 
 
@@ -630,7 +630,7 @@ $ kaiju2krona  -t /kaiju_db/kaiju_db_plasmids_2022-04-10/nodes.dmp \
 $ ktImportText -o Metacongo_kaiju__ALL_PL.krona.html  Metacongo_kaiju__ALL_PL.krona
 
 
-# Creating classification summary for phylum, class, order family, genus and species ...
+# Creating classification summary for phylum, class, order family, genus, and species ...
 
 
 $ for i in phylum class order family genus species; do kaiju2table -t /kaiju_db/kaiju_db_plasmids_2022-04-10/nodes.dmp \
@@ -720,7 +720,7 @@ $ kreport2krona.py -r metacongo_remaining_kraken2.report --intermediate-ranks -o
 
 $ kreport2krona.py -r orphan_kraken2.report --intermediate-ranks  -o orphan_kraken2.KRONA
 
-#Generate html for visualization (you can use the script available with kaiju package ktImportText from KronaTools ...)
+#Generate an HTML for visualization (you can use the script available with kaiju package ktImportText from KronaTools ...)
 
 $ ktImportText -o metacongo_remaining_kraken2.KRONA.html  metacongo_remaining_kraken2.KRONA
 
@@ -932,7 +932,7 @@ To track the assemblers (as info) in the assembly results (contigs), we renamed 
 
 ## Metaspades Bins Refined Renamed
 
-As previous renaming  and to track the assemblers (as info) in the assembly results (contigs), we renamed files as follows:
+As previous steps,  renaming  and to track the assemblers (as info) in the assembly results (contigs), we renamed files as follows:
 form bin.XX.fa to mtspades_bin.XX.fa
 
 ## Renamed Refined Merged
@@ -1044,7 +1044,7 @@ $ mkdir Clustered_using_mmseq && cd Clustered_using_mmseq
 
 $ ln -s ../all_assembly.fasta
 
-# Run mmseq2 to clusterize the assembly (remove redundant contigs)
+# Run mmseq2 to cluster  the assembly (remove redundant contigs)
 $ mmseqs easy-cluster all_assembly.fasta clusterRes tmp --min-seq-id 0.8 -c 0.8 --cov-mode 1
 $ ll 
 clusterRes_all_seqs.fasta
@@ -1073,7 +1073,7 @@ abricate --summary  Abricate_ouput.tab> Abricate_ouput_summary.tab
 # SUPPLEMENTARY COMMENTS
 
 
-Please if you use this protocol in your analyses, please cite the paper :....
+If you use this protocol in your data analyses, please cite the paper :....
 
 How to cite: {the analysis of our data was done as described in XXX et al,}
 
