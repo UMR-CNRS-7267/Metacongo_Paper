@@ -6,8 +6,9 @@
 
  **_The repository contains descriptions of the tools and methods used to analyze metagenomic data from surface water sampled from the city of Pointe-Noire, Congo. These analyses were published in this paper published in Data in Brief:_*Metagenomic data from gutter water in the city of Pointe-Noire, Republic of Congo*
  
-*Authors
-Bouziane Moumena, Céline Samba-Louakab, Victoire Aubierge Matondo Kimpamboudic, Anicet Magloire Boumbac, Hervé Sabin Ngomac, Ascel Samba-Louakaa*
+*Authors*
+
+_Bouziane Moumen, Céline Samba-Louaka, Victoire Aubierge Matondo Kimpamboudi, Anicet Magloire Boumba, Hervé Sabin Ngoma, Ascel Samba-Louaka_
 
 
 
