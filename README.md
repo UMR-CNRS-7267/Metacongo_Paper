@@ -735,7 +735,7 @@ $ ktImportText -o orphan_kraken2.KRONA.html orphan_kraken2.KRONA
 
 ```
 
-# Assembly (another approach to analyze the data)
+# Assembly (using 2 assemblers and binning using 2 binners)
 
 * Here we will assemble the data using two assemblers, and bin assemblies using two binning tools. 
 * Megahit and Metaspades will be used as assemblers
