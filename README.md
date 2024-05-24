@@ -1080,9 +1080,9 @@ abricate --summary  Abricate_ouput.tab> Abricate_ouput_summary.tab
 # SUPPLEMENTARY COMMENTS
 
 
-If you use this protocol in your data analyses, please cite the paper :....
+If you use this protocol in your data analyses, please cite the paper : Metagenomic data from gutter water in the city of Pointe-Noire, Republic of Congo
 
-How to cite: {the analysis of our data was done as described in XXX et al,}
+How to cite: {the analysis of our data was done as described in Moumen et al,2024}
 
 # REFERENCES
 
