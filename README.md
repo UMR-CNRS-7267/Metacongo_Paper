@@ -12,6 +12,7 @@
 
 _Bouziane Moumen, Céline Samba-Louaka, Victoire Aubierge Matondo Kimpamboudi, Anicet Magloire Boumba, Hervé Sabin Ngoma, Ascel Samba-Louaka_
 
+_Data Brief. 2024 Jun 27;55:110655. doi: 10.1016/j.dib.2024.110655. eCollection 2024 Aug. PMID: 39044909_
 
 
 
