@@ -1,4 +1,4 @@
-# Metacongo_Paper, 2024
+# SCRIPTS AND METHODS FOR: Metagenomic data from gutter water in the city of Pointe-Noire, Republic of Congo
 
 ![](https://github.com/UMR-CNRS-7267/Metacongo_Paper/blob/a32eebb3d65b6e58c5f7adf7758bbef7ad969aa8/metacongo_figues/00_logo.png)
 
